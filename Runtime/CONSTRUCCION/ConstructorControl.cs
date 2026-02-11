@@ -14,6 +14,8 @@ using Bounds.Modulos.Visor;
 using Bounds.Modulos.Visor.Persistencia;
 using Bounds.Persistencia.Lectores;
 using Ging1991.Interfaces.Contadores;
+using Bounds.Persistencia;
+using Bounds.Cofres;
 
 namespace Bounds.Contruccion {
 
@@ -33,8 +35,10 @@ namespace Bounds.Contruccion {
 		public string nombreMazo;
 		public CartaMazo vacioPrinpal;
 		public CartaMazo cartaPrinpal;
+		public Cofre cofre;
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
+			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
 			GameObject visor = Instantiate(claseVisor, new Vector3(0, 0, 0), Quaternion.identity);
 			GameObject lienzo = GameObject.Find("LienzoVisor");
 			visor.transform.SetParent(lienzo.transform);
@@ -45,7 +49,7 @@ namespace Bounds.Contruccion {
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
 				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, traductorClases,
 				traductorTipos, traductorPerfecciones, lectorCartaTexto);
-			visor.GetComponent<VisorConstruccion>().Mostrar(linea);
+			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
 
 
@@ -70,6 +74,7 @@ namespace Bounds.Contruccion {
 			traductorTipos.Inicializar();
 			tintero = new TinteroBounds();
 
+			cofre = new Cofre();
 
 			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
 			FindAnyObjectByType<Paginador>().Iniciar();

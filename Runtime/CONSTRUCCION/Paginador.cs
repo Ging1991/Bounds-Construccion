@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Bounds.Cofres;
+using Ging1991.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bounds.Contruccion {
 
-	public class Paginador : MonoBehaviour {
+	public class Paginador : SingletonMonoBehaviour<Paginador> {
 
 		public int pagina;
 		public int maxPagina = 0;

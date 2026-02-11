@@ -3,12 +3,13 @@ using Bounds.Cofres;
 using Bounds.Global;
 using Bounds.Global.Mazos;
 using Bounds.Persistencia;
+using Ging1991.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bounds.Contruccion {
 
-	public class Recetario : MonoBehaviour {
+	public class Recetario : SingletonMonoBehaviour<Recetario> {
 
 		private List<LineaRecetaConstruccion> cartas;
 		private Limitador limitador;
@@ -19,7 +20,7 @@ namespace Bounds.Contruccion {
 		public void Iniciar(string codigo) {
 
 			limitador = new Limitador();
-			cofre = new Cofre();
+			cofre = ConstructorControl.Instancia.cofre;
 			mazo = new MazoJugador(codigo);
 
 			CargarCartas();
@@ -66,7 +67,8 @@ namespace Bounds.Contruccion {
 		}
 
 
-		private void CargarCartas() {
+		public void CargarCartas() {
+			cofre = ConstructorControl.Instancia.cofre;
 			cartas = new List<LineaRecetaConstruccion>();
 
 			foreach (LineaReceta linea in cofre.GetCartas()) {

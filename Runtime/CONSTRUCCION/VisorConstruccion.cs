@@ -1,10 +1,13 @@
-﻿using Bounds.Global.Mazos;
+﻿using Bounds.Cofres;
+using Bounds.Global.Mazos;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Visor;
+using Bounds.Persistencia;
 using Ging1991.Core;
 using Ging1991.Interfaces.Selecciones;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Bounds.Contruccion {
 
@@ -13,16 +16,44 @@ namespace Bounds.Contruccion {
 		private LineaRecetaConstruccion lineaActual;
 		public OpcionBinaria casillaVacio;
 		public OpcionBinaria casillaPrincipal;
+		private Cofre cofre;
+		private Billetera billetera;
+		public Text textoBoton;
 
+		private int CalcularPrecio() {
+			int rareza = 1;
+			if (lineaActual.rareza == "PLA")
+				rareza = 10;
+			if (lineaActual.rareza == "ORO")
+				rareza = 100;
+			if (lineaActual.rareza == "MIT")
+				rareza = 1000;
+			if (lineaActual.rareza == "SEC")
+				rareza = 10000;
+			return rareza * lineaActual.cantidad;
+		}
 
-		public void Cerrar() {
+		public void BotonVender() {
+			int precio = CalcularPrecio();
+			billetera.GanarOro(precio);
+			cofre.RemoverCarta(lineaActual);
+			cofre.Guardar();
+			Recetario.Instancia.CargarCartas();
+			Paginador.Instancia.Actualizar();
+			BotonCerrar();
+		}
+
+		public void BotonCerrar() {
 			Bloqueador.BloquearGrupo("GLOBAL", false);
 			Destroy(gameObject);
 		}
 
 
-		public void Mostrar(LineaRecetaConstruccion linea) {
+		public void Mostrar(LineaRecetaConstruccion linea, Billetera billetera, Cofre cofre) {
+			this.billetera = billetera;
+			this.cofre = cofre;
 			lineaActual = linea;
+			textoBoton.text = $"Vender por ${CalcularPrecio()}";
 			Bloqueador.BloquearGrupo("GLOBAL", true);
 			GetComponentInChildren<VisorGeneral>().Mostrar(linea.cartaID, linea.imagen, linea.rareza);
 			InicializarVacio(linea);

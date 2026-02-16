@@ -4502,6 +4502,7 @@ MonoBehaviour:
   - {fileID: 12377673}
   claseVisor: {fileID: 897008792054399447, guid: 8ebb3bb1f76566146afd5fd9c157eb50, type: 3}
   nombreMazo: 
+  parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
 --- !u!114 &1948910186
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ namespace Bounds.Contruccion {
 		public ParametrosControl parametrosControl;
 
 		void Start() {
+			Debug.Log(parametrosControl.parametros.inicializado);
 			parametrosControl.Inicializar();
 			musicaDeFondo.Inicializar(new DireccionRecursos("Musica", "Fondo").Generar());
 		}

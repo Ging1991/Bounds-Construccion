@@ -16,6 +16,7 @@ using Bounds.Persistencia.Lectores;
 using Ging1991.Interfaces.Contadores;
 using Bounds.Persistencia;
 using Bounds.Cofres;
+using Bounds.Persistencia.Parametros;
 
 namespace Bounds.Contruccion {
 
@@ -36,6 +37,7 @@ namespace Bounds.Contruccion {
 		public CartaMazo vacioPrinpal;
 		public CartaMazo cartaPrinpal;
 		public Cofre cofre;
+		public ParametrosEscena parametros;
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());

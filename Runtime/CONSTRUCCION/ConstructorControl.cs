@@ -17,6 +17,7 @@ using Ging1991.Interfaces.Contadores;
 using Bounds.Persistencia;
 using Bounds.Cofres;
 using Bounds.Persistencia.Parametros;
+using Bounds.Modulos.Persistencia;
 
 namespace Bounds.Contruccion {
 
@@ -47,10 +48,10 @@ namespace Bounds.Contruccion {
 			visor.transform.localScale = new Vector3(1, 1, 1);
 			visor.transform.localPosition = new Vector3(0, 0, 0);
 			visor.name = "visor";
-			LectorCartaTexto lectorCartaTexto = new LectorCartaTexto(new DireccionRecursos("Cartas", "Nombres").Generar());
+			ISelectorXXX<int, string> selectorNombres = new TraductorCartaID(new DireccionRecursos("Cartas", "Nombres").Generar());
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
 				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, traductorClases,
-				traductorTipos, traductorPerfecciones, lectorCartaTexto);
+				traductorTipos, traductorPerfecciones, selectorNombres);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
 

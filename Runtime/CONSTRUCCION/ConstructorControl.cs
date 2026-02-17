@@ -18,6 +18,7 @@ using Bounds.Persistencia;
 using Bounds.Cofres;
 using Bounds.Persistencia.Parametros;
 using Bounds.Modulos.Persistencia;
+using Ging1991.Core.Interfaces;
 
 namespace Bounds.Contruccion {
 
@@ -26,7 +27,6 @@ namespace Bounds.Contruccion {
 		public IlustradorDeCartas ilustradorDeCartas;
 		public DatosDeCartas datosDeCartas;
 		public DatosDeEfectos datosDeEfectos;
-		public TraductorVisor traductorClases;
 		public TraductorVisor traductorTipos;
 		public TraductorVisor traductorPerfecciones;
 		public ITintero tintero;
@@ -48,9 +48,10 @@ namespace Bounds.Contruccion {
 			visor.transform.localScale = new Vector3(1, 1, 1);
 			visor.transform.localPosition = new Vector3(0, 0, 0);
 			visor.name = "visor";
-			ISelectorXXX<int, string> selectorNombres = new TraductorCartaID(new DireccionRecursos("Cartas", "Nombres").Generar());
+			ISelector<int, string> selectorNombres = new TraductorCartaID(new DireccionRecursos("Cartas", "Nombres").Generar());
+			ISelector<string, string> selectorClases = new TraductorTexto(new DireccionRecursos("Cartas", "Clases").Generar());
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
-				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, traductorClases,
+				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorClases,
 				traductorTipos, traductorPerfecciones, selectorNombres);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
@@ -72,7 +73,6 @@ namespace Bounds.Contruccion {
 			datosDeCartas.Inicializar();
 			datosDeEfectos.Inicializar();
 			ilustradorDeCartas.Inicializar();
-			traductorClases.Inicializar();
 			traductorPerfecciones.Inicializar();
 			traductorTipos.Inicializar();
 			tintero = new TinteroBounds();

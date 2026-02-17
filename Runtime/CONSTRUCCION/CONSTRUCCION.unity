@@ -1133,17 +1133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4d96a32e71e4e45bc9d22382cbf919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Ging1991.Interfaces::Ging1991.Interfaces.Casillas.GrupoDeCasillas
---- !u!114 &802893961 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5375308222474535699, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-  m_PrefabInstance: {fileID: 1561079094}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb6ed78d0235a14fa7d742fcbb25f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Bounds.Visor::Bounds.Modulos.Visor.Persistencia.TraductorVisor
 --- !u!1001 &831603518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3156,67 +3145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e179e539d19dfd641b571855ca20fd09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1561079094
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2433566791602767461, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2829220989666299005, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: m_Name
-      value: TraductorClases
-      objectReference: {fileID: 0}
-    - target: {fileID: 5375308222474535699, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
-      propertyPath: direccion
-      value: CLASES
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff2078c8a9ecdef42b2aff74497de827, type: 3}
 --- !u!1 &1607287970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4692672253531238701, guid: 7cc8895da9d48bd4398d382477b6376d, type: 3}
@@ -4486,7 +4414,6 @@ MonoBehaviour:
   ilustradorDeCartas: {fileID: 1107876724}
   datosDeCartas: {fileID: 1537925308}
   datosDeEfectos: {fileID: 177490446}
-  traductorClases: {fileID: 802893961}
   traductorTipos: {fileID: 1397966179}
   traductorPerfecciones: {fileID: 711508705}
   opcionesMazo:
@@ -6469,7 +6396,6 @@ SceneRoots:
   - {fileID: 1910145549}
   - {fileID: 120234681}
   - {fileID: 934950610}
-  - {fileID: 1561079094}
   - {fileID: 1520561149}
   - {fileID: 984699454}
   - {fileID: 1902029356}

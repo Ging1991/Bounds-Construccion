@@ -14,7 +14,7 @@ namespace Bounds.Contruccion {
 
 
 		public void Cargar(List<LineaRecetaConstruccion> cartas) {
-			ilustrador.Inicializar();
+			ilustrador = ConstructorControl.Instancia.ilustradorDeCartas;
 
 			opciones.Sort((opcion1, opcion2) => {
 				int numero1 = ExtraerNumero(opcion1.name);

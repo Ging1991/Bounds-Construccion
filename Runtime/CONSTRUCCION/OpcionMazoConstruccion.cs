@@ -3,6 +3,7 @@ using Bounds.Global.Mazos;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Tienda;
+using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
@@ -15,10 +16,10 @@ namespace Bounds.Contruccion {
 
 		public bool seleccionado;
 		public string nombre;
-		public IlustradorDeCartas ilustrador;
+		public ISelector<string, Sprite> ilustrador;
 
-		void Start() {
-			ilustrador.Inicializar();
+		public void Inicializar(ISelector<string, Sprite> ilustrador) {
+			this.ilustrador = ilustrador;
 			MostrarPredeterminado();
 			Mazo mazo = new MazoJugador(nombre);
 

@@ -1,6 +1,8 @@
 ﻿using Bounds.Infraestructura;
+using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Persistencia;
 using Bounds.Persistencia.Parametros;
+using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
@@ -15,9 +17,18 @@ namespace Bounds.Contruccion {
 		public ParametrosControl parametrosControl;
 
 		void Start() {
-			Debug.Log(parametrosControl.parametros.inicializado);
 			parametrosControl.Inicializar();
 			musicaDeFondo.Inicializar(new DireccionRecursos("Musica", "Fondo").Generar());
+			ISelector<string, Sprite> selectorImagenes = new IlustradorDeCartas(
+				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
+				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
+			);
+
+			GameObject[] mazos = GameObject.FindGameObjectsWithTag("mazo");
+			foreach (GameObject mazo in mazos) {
+				mazo.GetComponent<OpcionMazoConstruccion>().Inicializar(selectorImagenes);
+			}
+
 		}
 
 		public void DeseleccionarTodo() {

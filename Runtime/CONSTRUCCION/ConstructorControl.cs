@@ -27,8 +27,6 @@ namespace Bounds.Contruccion {
 		public IlustradorDeCartas ilustradorDeCartas;
 		public DatosDeCartas datosDeCartas;
 		public DatosDeEfectos datosDeEfectos;
-		public TraductorVisor traductorTipos;
-		public TraductorVisor traductorPerfecciones;
 		public ITintero tintero;
 
 		public List<GameObject> opcionesMazo;
@@ -50,9 +48,12 @@ namespace Bounds.Contruccion {
 			visor.name = "visor";
 			ISelector<int, string> selectorNombres = new TraductorCartaID(new DireccionRecursos("Cartas", "Nombres").Generar());
 			ISelector<string, string> selectorClases = new TraductorTexto(new DireccionRecursos("Cartas", "Clases").Generar());
+			ISelector<string, string> selectorTipos = new TraductorTexto(new DireccionRecursos("Cartas", "Tipos").Generar());
+			ISelector<string, string> selectorInvocaciones = new TraductorTexto(new DireccionRecursos("Cartas", "Invocaciones").Generar());
+
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
 				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorClases,
-				traductorTipos, traductorPerfecciones, selectorNombres);
+				selectorTipos, selectorInvocaciones, selectorNombres);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
 
@@ -72,9 +73,7 @@ namespace Bounds.Contruccion {
 		void Start() {
 			datosDeCartas.Inicializar();
 			datosDeEfectos.Inicializar();
-			ilustradorDeCartas.Inicializar();
-			traductorPerfecciones.Inicializar();
-			traductorTipos.Inicializar();
+			ilustradorDeCartas = new("Cartas/Imagenes", "IMAGENES/Cartas/Imagenes");
 			tintero = new TinteroBounds();
 
 			cofre = new Cofre();

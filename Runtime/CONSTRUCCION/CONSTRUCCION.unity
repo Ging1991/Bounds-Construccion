@@ -4056,6 +4056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DatosDeCartas
       objectReference: {fileID: 0}
+    - target: {fileID: 7097648553086029181, guid: ff906150ef8cf9449a35c552687de658, type: 3}
+      propertyPath: direccion
+      value: Cartas/Datos
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4160,6 +4164,7 @@ GameObject:
   - component: {fileID: 1948910189}
   - component: {fileID: 1948910188}
   - component: {fileID: 1948910190}
+  - component: {fileID: 1948910191}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -4210,6 +4215,7 @@ MonoBehaviour:
   claseVisor: {fileID: 897008792054399447, guid: 8ebb3bb1f76566146afd5fd9c157eb50, type: 3}
   nombreMazo: 
   parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
+  parametrosControl: {fileID: 1948910191}
 --- !u!114 &1948910186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4277,6 +4283,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Ging1991.Core::Ging1991.Core.GestorDeSonidos
   direccion: Sonidos
   maxInstancias: 5
+--- !u!114 &1948910191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948910183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fbdc16ee7ec8fc4799ef21f316a392e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
 --- !u!1 &1973335621 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6042740383191885581, guid: 6c11691c5ceb2614ca40280ebbc0f4e2, type: 3}

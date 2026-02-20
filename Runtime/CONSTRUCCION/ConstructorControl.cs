@@ -37,6 +37,12 @@ namespace Bounds.Contruccion {
 		public CartaMazo cartaPrinpal;
 		public Cofre cofre;
 		public ParametrosEscena parametros;
+		public ParametrosControl parametrosControl;
+
+		public ISelector<int, string> selectorNombres;
+		public ISelector<string, string> selectorClases;
+		public ISelector<string, string> selectorTipos;
+		public ISelector<string, string> selectorInvocaciones;
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
@@ -46,10 +52,6 @@ namespace Bounds.Contruccion {
 			visor.transform.localScale = new Vector3(1, 1, 1);
 			visor.transform.localPosition = new Vector3(0, 0, 0);
 			visor.name = "visor";
-			ISelector<int, string> selectorNombres = new TraductorCartaID(new DireccionRecursos("Cartas", "Nombres").Generar());
-			ISelector<string, string> selectorClases = new TraductorTexto(new DireccionRecursos("Cartas", "Clases").Generar());
-			ISelector<string, string> selectorTipos = new TraductorTexto(new DireccionRecursos("Cartas", "Tipos").Generar());
-			ISelector<string, string> selectorInvocaciones = new TraductorTexto(new DireccionRecursos("Cartas", "Invocaciones").Generar());
 
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
 				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorClases,
@@ -73,7 +75,18 @@ namespace Bounds.Contruccion {
 		void Start() {
 			datosDeCartas.Inicializar();
 			datosDeEfectos.Inicializar();
-			ilustradorDeCartas = new("Cartas/Imagenes", "IMAGENES/Cartas/Imagenes");
+			parametrosControl.Inicializar();
+			parametros = parametrosControl.parametros;
+
+			ilustradorDeCartas = new IlustradorDeCartas(
+				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
+				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
+			);
+			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
+			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
+			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
+			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
+
 			tintero = new TinteroBounds();
 
 			cofre = new Cofre();

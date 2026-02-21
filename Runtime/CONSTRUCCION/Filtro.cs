@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
+using Bounds.Persistencia.Lectores;
 using Ging1991.Core;
 using Ging1991.Interfaces.Selecciones;
 using UnityEngine;
@@ -13,29 +14,52 @@ namespace Bounds.Contruccion {
 		public GrupoDeCasillas grupoClases;
 		public GrupoDeCasillas grupoInvocaciones;
 		public GrupoDeCasillas grupoNiveles;
+		public GrupoDeCasillas grupoColecciones;
 		private bool iniciado = false;
 		private ControladorCasillas controladorClases;
 		private ControladorCasillas controladorInvocaciones;
 		private ControladorCasillas controladorNiveles;
+		private ControladorCasillas controladorColecciones;
 		public Transform panel;
+		private List<string> cartasEnero;
+		private List<string> cartasMeta;
 
 		public void Inicializar() {
 			controladorClases = new();
 			controladorInvocaciones = new();
 			controladorNiveles = new();
+			controladorColecciones = new();
 
 			grupoClases.Iniciar();
 			grupoInvocaciones.Iniciar();
 			grupoNiveles.Iniciar();
+			grupoColecciones.Iniciar();
 
 			grupoClases.AgregarObservador(controladorClases);
 			grupoInvocaciones.AgregarObservador(controladorInvocaciones);
 			grupoNiveles.AgregarObservador(controladorNiveles);
+			grupoColecciones.AgregarObservador(controladorColecciones);
 
 			grupoClases.opcionTodo.Presionar();
 			grupoInvocaciones.opcionTodo.Presionar();
 			grupoNiveles.opcionTodo.Presionar();
+			grupoColecciones.opcionTodo.Presionar();
 
+			LectorColeccion lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("ENERO2026"));
+			cartasEnero = new();
+			cartasEnero.AddRange(lectorColeccion.Leer().comunes);
+			cartasEnero.AddRange(lectorColeccion.Leer().infrecuentes);
+			cartasEnero.AddRange(lectorColeccion.Leer().raras);
+			cartasEnero.AddRange(lectorColeccion.Leer().miticas);
+			cartasEnero.AddRange(lectorColeccion.Leer().secretas);
+
+			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("META"));
+			cartasMeta = new();
+			cartasMeta.AddRange(lectorColeccion.Leer().comunes);
+			cartasMeta.AddRange(lectorColeccion.Leer().infrecuentes);
+			cartasMeta.AddRange(lectorColeccion.Leer().raras);
+			cartasMeta.AddRange(lectorColeccion.Leer().miticas);
+			cartasMeta.AddRange(lectorColeccion.Leer().secretas);
 			iniciado = true;
 		}
 
@@ -78,6 +102,15 @@ namespace Bounds.Contruccion {
 			if (grupoNiveles.opcionTodo.valor == false) {
 				string nivelCadena = (carta.nivel > 9) ? "10" : $"{carta.nivel}";
 				return controladorNiveles.valores[nivelCadena];
+			}
+
+			// COLECCIONES
+			if (grupoColecciones.opcionTodo.valor == false) {
+
+				if (controladorColecciones.valores["ENERO2026"] && !cartasEnero.Contains($"{cartaID}_GEMINI"))
+					return false;
+				if (controladorColecciones.valores["META"] && !cartasMeta.Contains($"{cartaID}_META"))
+					return false;
 			}
 
 			return true;

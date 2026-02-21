@@ -43,6 +43,7 @@ namespace Bounds.Contruccion {
 		public ISelector<string, string> selectorClases;
 		public ISelector<string, string> selectorTipos;
 		public ISelector<string, string> selectorInvocaciones;
+		public DireccionRecursos carpetaColecciones;
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
@@ -86,6 +87,7 @@ namespace Bounds.Contruccion {
 			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
 			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
 			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
+			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
 
 			tintero = new TinteroBounds();
 

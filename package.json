@@ -1,6 +1,6 @@
 {
 	"name": "com.bounds.modulos.construccion",
-	"version": "1.2.1",
+	"version": "1.3.0",
 	"displayName": "Bounds - Construccion",
 	"description": "Librería base para soportar otras liberías que he creado.",
 	"unity": "2022.3",

@@ -71,11 +71,11 @@ namespace Bounds.Contruccion {
 			cofre = ConstructorControl.Instancia.cofre;
 			cartas = new List<LineaRecetaConstruccion>();
 
-			foreach (LineaReceta linea in cofre.GetCartas()) {
+			foreach (CartaCofreBD linea in cofre.GetCartas()) {
 				cartas.Add(new LineaRecetaConstruccion(
 					linea.GetCodigo(),
 					limitador.GetLimite(linea.cartaID),
-					CantidadEnMazo(linea.GetCodigoParcial())
+					CantidadEnMazo(linea.GetCodigoIndividual())
 				));
 			}
 
@@ -93,8 +93,8 @@ namespace Bounds.Contruccion {
 
 		public int CantidadEnMazo(string codigoParcial) {
 			foreach (CartaMazo carta in mazo.cartas) {
-				LineaReceta linea = new LineaReceta(carta.GetCodigo());
-				if (linea.GetCodigoParcial() == codigoParcial) {
+				CartaCofreBD linea = new(carta.GetCodigo());
+				if (linea.GetCodigoIndividual() == codigoParcial) {
 					return linea.cantidad;
 				}
 			}

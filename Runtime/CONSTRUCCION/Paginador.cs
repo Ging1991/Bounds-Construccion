@@ -70,7 +70,7 @@ namespace Bounds.Contruccion {
 
 		private void CalcularMaxPagina() {
 			int cantidad = 0;
-			foreach (LineaReceta carta in FindAnyObjectByType<Filtro>().GetCartasFiltradas()) {
+			foreach (CartaCofreBD carta in FindAnyObjectByType<Filtro>().GetCartasFiltradas()) {
 				cantidad++;
 			}
 			maxPagina = (cantidad + 9) / 10;

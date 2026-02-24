@@ -91,7 +91,7 @@ namespace Bounds.Contruccion {
 
 			tintero = new TinteroBounds();
 
-			cofre = new Cofre();
+			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
 
 			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
 			FindAnyObjectByType<Paginador>().Iniciar();
@@ -142,7 +142,7 @@ namespace Bounds.Contruccion {
 
 		public void AgregarCarta(string codigoParcial) {
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {
-				if (carta.GetCodigoParcial() == codigoParcial) {
+				if (carta.GetCodigoIndividual() == codigoParcial) {
 					if (carta.cantidadEnMazo == carta.limite
 							|| carta.cantidadEnMazo == carta.cantidadEnCofre
 							|| FindAnyObjectByType<Recetario>().CantidadEnMazoActual(carta.cartaID) >= carta.limite) {
@@ -162,7 +162,7 @@ namespace Bounds.Contruccion {
 
 		public void SacarCarta(string codigoParcial) {
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {
-				if (carta.GetCodigoParcial() == codigoParcial) {
+				if (carta.GetCodigoIndividual() == codigoParcial) {
 					carta.cantidadEnMazo--;
 				}
 			}

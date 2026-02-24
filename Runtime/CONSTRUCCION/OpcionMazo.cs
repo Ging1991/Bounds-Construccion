@@ -56,7 +56,7 @@ namespace Bounds.Contruccion {
 				return;
 
 			ConstructorControl constructor = GameObject.Find("Control").GetComponent<ConstructorControl>();
-			constructor.SacarCarta(linea.GetCodigoParcial());
+			constructor.SacarCarta(linea.GetCodigoIndividual());
 		}
 
 

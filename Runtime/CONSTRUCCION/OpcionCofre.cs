@@ -64,7 +64,7 @@ namespace Bounds.Contruccion {
 
 		void OnMouseUp() {
 			if (PuedePresionar()) {
-				padre.SeleccionarCartaID(linea.GetCodigoParcial());
+				padre.SeleccionarCartaID(linea.GetCodigoIndividual());
 			}
 
 		}

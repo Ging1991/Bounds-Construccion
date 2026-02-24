@@ -2,7 +2,7 @@ using Bounds.Cofres;
 
 namespace Bounds.Contruccion {
 
-	public class LineaRecetaConstruccion : LineaReceta {
+	public class LineaRecetaConstruccion : CartaCofreBD {
 
 		public int limite;
 		public int cantidadEnCofre;

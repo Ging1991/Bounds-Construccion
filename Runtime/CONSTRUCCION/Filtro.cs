@@ -23,6 +23,7 @@ namespace Bounds.Contruccion {
 		public Transform panel;
 		private List<string> cartasEnero;
 		private List<string> cartasMeta;
+		private List<string> cartasExplosion;
 
 		public void Inicializar() {
 			controladorClases = new();
@@ -60,6 +61,15 @@ namespace Bounds.Contruccion {
 			cartasMeta.AddRange(lectorColeccion.Leer().raras);
 			cartasMeta.AddRange(lectorColeccion.Leer().miticas);
 			cartasMeta.AddRange(lectorColeccion.Leer().secretas);
+
+			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("EXPLOSION"));
+			cartasExplosion = new();
+			cartasExplosion.AddRange(lectorColeccion.Leer().comunes);
+			cartasExplosion.AddRange(lectorColeccion.Leer().infrecuentes);
+			cartasExplosion.AddRange(lectorColeccion.Leer().raras);
+			cartasExplosion.AddRange(lectorColeccion.Leer().miticas);
+			cartasExplosion.AddRange(lectorColeccion.Leer().secretas);
+
 			iniciado = true;
 		}
 
@@ -110,6 +120,8 @@ namespace Bounds.Contruccion {
 				if (controladorColecciones.valores["ENERO2026"] && !cartasEnero.Contains($"{cartaID}_GEMINI"))
 					return false;
 				if (controladorColecciones.valores["META"] && !cartasMeta.Contains($"{cartaID}_META"))
+					return false;
+				if (controladorColecciones.valores["EXPLOSION"] && !(cartasExplosion.Contains($"{cartaID}_META") || cartasExplosion.Contains($"{cartaID}_GEMINI")))
 					return false;
 			}
 

@@ -44,6 +44,7 @@ namespace Bounds.Contruccion {
 		public ISelector<string, string> selectorTipos;
 		public ISelector<string, string> selectorInvocaciones;
 		public DireccionRecursos carpetaColecciones;
+		public InstanciadorConstruir instanciador;
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
@@ -110,7 +111,6 @@ namespace Bounds.Contruccion {
 				Destroy(opcion);
 			opcionesMazo = new List<GameObject>();
 
-			InstanciadorConstruir instanciador = GameObject.Find("Instanciador").GetComponent<InstanciadorConstruir>();
 			List<LineaRecetaConstruccion> cartasEnMazo = FindAnyObjectByType<Recetario>().GetCartasEnMazo();
 
 			cartasEnMazo.Sort(delegate (LineaRecetaConstruccion carta1, LineaRecetaConstruccion carta2) {

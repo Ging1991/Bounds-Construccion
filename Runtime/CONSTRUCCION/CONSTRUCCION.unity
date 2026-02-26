@@ -4215,6 +4215,7 @@ MonoBehaviour:
   nombreMazo: 
   parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
   parametrosControl: {fileID: 1948910191}
+  instanciador: {fileID: 1832760690}
 --- !u!114 &1948910186
 MonoBehaviour:
   m_ObjectHideFlags: 0

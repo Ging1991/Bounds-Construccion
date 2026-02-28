@@ -19,7 +19,7 @@ namespace Bounds.Contruccion {
 		void Start() {
 			parametrosControl.Inicializar();
 			musicaDeFondo.Inicializar(new DireccionRecursos("Musica", "Fondo").Generar());
-			ISelector<string, Sprite> selectorImagenes = new IlustradorDeCartas(
+			IProveedor<string, Sprite> selectorImagenes = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
 			);

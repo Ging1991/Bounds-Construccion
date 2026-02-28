@@ -16,9 +16,9 @@ namespace Bounds.Contruccion {
 
 		public bool seleccionado;
 		public string nombre;
-		public ISelector<string, Sprite> ilustrador;
+		public IProveedor<string, Sprite> ilustrador;
 
-		public void Inicializar(ISelector<string, Sprite> ilustrador) {
+		public void Inicializar(IProveedor<string, Sprite> ilustrador) {
 			this.ilustrador = ilustrador;
 			MostrarPredeterminado();
 			Mazo mazo = new MazoJugador(nombre);

@@ -39,10 +39,11 @@ namespace Bounds.Contruccion {
 		public ParametrosEscena parametros;
 		public ParametrosControl parametrosControl;
 
-		public ISelector<int, string> selectorNombres;
-		public ISelector<string, string> selectorClases;
-		public ISelector<string, string> selectorTipos;
-		public ISelector<string, string> selectorInvocaciones;
+		public IProveedor<int, string> selectorNombres;
+		public IProveedor<string, string> selectorClases;
+		public IProveedor<string, string> selectorTipos;
+		public IProveedor<string, string> selectorInvocaciones;
+		public IProveedor<string, string> selectorSistema;
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
 
@@ -56,7 +57,7 @@ namespace Bounds.Contruccion {
 			visor.name = "visor";
 
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
-				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorClases,
+				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
 				selectorTipos, selectorInvocaciones, selectorNombres);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
@@ -86,6 +87,7 @@ namespace Bounds.Contruccion {
 			);
 			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
 			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
+			selectorSistema = new TraductorTexto(parametros.direcciones["SISTEMA"]);
 			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
 			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
 			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);

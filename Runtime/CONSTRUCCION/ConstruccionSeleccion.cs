@@ -18,7 +18,7 @@ namespace Bounds.Contruccion {
 
 		void Start() {
 			parametrosControl.Inicializar();
-			musicaDeFondo.Inicializar(new DireccionRecursos("Musica", "Fondo").Generar());
+			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			IProveedor<string, Sprite> selectorImagenes = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]

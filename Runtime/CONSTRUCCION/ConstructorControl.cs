@@ -38,6 +38,7 @@ namespace Bounds.Contruccion {
 		public Cofre cofre;
 		public ParametrosEscena parametros;
 		public ParametrosControl parametrosControl;
+		public MusicaDeFondo musicaDeFondo;
 
 		public IProveedor<int, string> selectorNombres;
 		public IProveedor<string, string> selectorClases;
@@ -91,6 +92,7 @@ namespace Bounds.Contruccion {
 			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
 			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
 			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
+			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 
 			tintero = new TinteroBounds();
 

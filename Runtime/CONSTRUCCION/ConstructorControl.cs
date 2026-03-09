@@ -19,6 +19,8 @@ using Bounds.Cofres;
 using Bounds.Persistencia.Parametros;
 using Bounds.Modulos.Persistencia;
 using Ging1991.Core.Interfaces;
+using Bounds.Musica;
+using Ging1991.Musica;
 
 namespace Bounds.Contruccion {
 
@@ -47,6 +49,41 @@ namespace Bounds.Contruccion {
 		public IProveedor<string, string> selectorSistema;
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
+		public GestorDeSonidos gestorDeSonidos;
+
+		void Start() {
+			datosDeCartas.Inicializar();
+			datosDeEfectos.Inicializar();
+			parametrosControl.Inicializar();
+			parametros = parametrosControl.parametros;
+
+			ilustradorDeCartas = new IlustradorDeCartas(
+				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
+				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
+			);
+			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
+			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
+			selectorSistema = new TraductorTexto(parametros.direcciones["SISTEMA"]);
+			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
+			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
+			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
+			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
+			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direcciones["SONIDOS"]));
+
+			tintero = new TinteroBounds();
+
+			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
+
+			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
+			FindAnyObjectByType<Paginador>().Iniciar();
+
+			casillas = new Dictionary<string, bool>();
+			opcionesMazo = new List<GameObject>();
+
+			ActualizarOpcionesMazo();
+			FindAnyObjectByType<Filtro>().Inicializar();
+		}
+
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
@@ -73,39 +110,6 @@ namespace Bounds.Contruccion {
 			Direccion direccion = new DireccionDinamica("MAZOS", "PREDETERMINADO.json");
 			LectorCadena lectorCadena = new LectorCadena(direccion.Generar(), TipoLector.DINAMICO);
 			return lectorCadena.Leer().valor;
-		}
-
-
-		void Start() {
-			datosDeCartas.Inicializar();
-			datosDeEfectos.Inicializar();
-			parametrosControl.Inicializar();
-			parametros = parametrosControl.parametros;
-
-			ilustradorDeCartas = new IlustradorDeCartas(
-				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
-				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
-			);
-			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
-			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
-			selectorSistema = new TraductorTexto(parametros.direcciones["SISTEMA"]);
-			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
-			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
-			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
-			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
-
-			tintero = new TinteroBounds();
-
-			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
-
-			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
-			FindAnyObjectByType<Paginador>().Iniciar();
-
-			casillas = new Dictionary<string, bool>();
-			opcionesMazo = new List<GameObject>();
-
-			ActualizarOpcionesMazo();
-			FindAnyObjectByType<Filtro>().Inicializar();
 		}
 
 
@@ -150,12 +154,12 @@ namespace Bounds.Contruccion {
 					if (carta.cantidadEnMazo == carta.limite
 							|| carta.cantidadEnMazo == carta.cantidadEnCofre
 							|| FindAnyObjectByType<Recetario>().CantidadEnMazoActual(carta.cartaID) >= carta.limite) {
-						GetComponent<GestorDeSonidos>().ReproducirSonido("FxRebote");
 
+						gestorDeSonidos.ReproducirSonido("FxRebote");
 					}
 					else {
 						carta.cantidadEnMazo++;
-						GetComponent<GestorDeSonidos>().ReproducirSonido("FxAdquisicion");
+						gestorDeSonidos.ReproducirSonido("FxAdquisicion");
 						ActualizarOpcionesMazo();
 						FindAnyObjectByType<Paginador>().Actualizar();
 					}
@@ -170,7 +174,7 @@ namespace Bounds.Contruccion {
 					carta.cantidadEnMazo--;
 				}
 			}
-			GetComponent<GestorDeSonidos>().ReproducirSonido("FxAdquisicion");
+			//GetComponent<GestorDeSonidos>().ReproducirSonido("FxAdquisicion");
 			ActualizarOpcionesMazo();
 			FindAnyObjectByType<Paginador>().Actualizar();
 		}

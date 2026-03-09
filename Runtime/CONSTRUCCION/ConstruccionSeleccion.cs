@@ -1,6 +1,7 @@
 ﻿using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Persistencia;
+using Bounds.Musica;
 using Bounds.Persistencia.Parametros;
 using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;

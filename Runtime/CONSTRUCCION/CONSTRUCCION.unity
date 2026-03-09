@@ -3324,7 +3324,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1948910184}
     m_Modifications:
     - target: {fileID: 5445510886689818553, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
       propertyPath: m_Name
@@ -3352,15 +3352,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198515645138593896, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9198515645138593896, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9198515645138593896, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9198515645138593896, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3390,6 +3390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f101ff9062d5dbc4dbed1eb511d5ff8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1691271286 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9198515645138593896, guid: 3354e86cbae314844b4e16a766e16b3f, type: 3}
+  m_PrefabInstance: {fileID: 1691271283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1696985776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3288242827769109262, guid: 4846e107b9cf7f348ad4b7b7a2cb8040, type: 3}
@@ -4255,7 +4260,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1691271286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1948910185
@@ -4289,6 +4295,7 @@ MonoBehaviour:
   parametrosControl: {fileID: 1948910191}
   musicaDeFondo: {fileID: 1691271284}
   instanciador: {fileID: 1832760690}
+  gestorDeSonidos: {fileID: 1948910190}
 --- !u!114 &1948910186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,7 +4362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290af22307abdc24f8b7ec28108b212d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Ging1991.Core::Ging1991.Core.GestorDeSonidos
-  direccion: Sonidos
   maxInstancias: 5
 --- !u!114 &1948910191
 MonoBehaviour:
@@ -6258,4 +6264,3 @@ SceneRoots:
   - {fileID: 1910145549}
   - {fileID: 120234681}
   - {fileID: 1902029356}
-  - {fileID: 1691271283}

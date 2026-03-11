@@ -1,5 +1,7 @@
 ﻿using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Ilustradores;
+using Bounds.Modulos.Cartas.Persistencia;
+using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Persistencia;
 using Bounds.Musica;
 using Bounds.Persistencia.Parametros;
@@ -16,6 +18,7 @@ namespace Bounds.Contruccion {
 
 		public MusicaDeFondo musicaDeFondo;
 		public ParametrosControl parametrosControl;
+		public IProveedor<int, CartaBD> proveedorCartas;
 
 		void Start() {
 			parametrosControl.Inicializar();
@@ -24,10 +27,11 @@ namespace Bounds.Contruccion {
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
 			);
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
 
 			GameObject[] mazos = GameObject.FindGameObjectsWithTag("mazo");
 			foreach (GameObject mazo in mazos) {
-				mazo.GetComponent<OpcionMazoConstruccion>().Inicializar(selectorImagenes);
+				mazo.GetComponent<OpcionMazoConstruccion>().Inicializar(selectorImagenes, proveedorCartas);
 			}
 
 		}

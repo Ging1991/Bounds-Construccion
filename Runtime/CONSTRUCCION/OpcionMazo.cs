@@ -1,6 +1,4 @@
-﻿using Bounds.Modulos.Cartas.Persistencia;
-using Ging1991.Core.Interfaces;
-using Ging1991.Relojes;
+﻿using Ging1991.Core.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +33,7 @@ namespace Bounds.Contruccion {
 
 		private void SetNivel() {
 			Text ui = transform.GetChild(1).GetComponentInChildren<Text>();
-			ui.text = "" + DatosDeCartas.Instancia.lector.LeerDatos(linea.cartaID).nivel;
+			ui.text = "" + ConstructorControl.Instancia.proveedorCartas.GetElemento(linea.cartaID).nivel;
 		}
 
 

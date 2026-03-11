@@ -1,6 +1,7 @@
 ﻿using Bounds.Global;
 using Bounds.Global.Mazos;
 using Bounds.Modulos.Cartas.Ilustradores;
+using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Tienda;
 using Ging1991.Core.Interfaces;
@@ -18,14 +19,14 @@ namespace Bounds.Contruccion {
 		public string nombre;
 		public IProveedor<string, Sprite> ilustrador;
 
-		public void Inicializar(IProveedor<string, Sprite> ilustrador) {
+		public void Inicializar(IProveedor<string, Sprite> ilustrador, IProveedor<int, CartaBD> proveedorCartas) {
 			this.ilustrador = ilustrador;
 			MostrarPredeterminado();
 			Mazo mazo = new MazoJugador(nombre);
 
 			SetNombre(mazo.nombre);
 			if (mazo.emblema != null)
-				GetComponent<ContenedorDeCartas>().Inicializar(ilustrador, new TinteroBounds(), mazo.emblema.cartaID, mazo.emblema.imagen);
+				GetComponent<ContenedorDeCartas>().Inicializar(proveedorCartas, ilustrador, new TinteroBounds(), mazo.emblema.cartaID, mazo.emblema.imagen);
 		}
 
 

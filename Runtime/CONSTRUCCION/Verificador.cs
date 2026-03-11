@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Bounds.Global.Mazos;
 using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Persistencia;
+using Bounds.Modulos.Cartas.Persistencia.Datos;
+using Ging1991.Core.Interfaces;
 using Ging1991.Ventanas;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +13,7 @@ namespace Bounds.Contruccion {
 
 	public class Verificador : MonoBehaviour {
 
-		public DatosDeCartas datosDeCartas;
+		public IProveedor<int, CartaBD> proveedorCartas;
 
 		public void BotonGuardar() {
 			if (CuadroAceptar.existenCuadros() || VisorConstruccion.VisorActivo())
@@ -76,7 +78,7 @@ namespace Bounds.Contruccion {
 
 		private string VerificarCantidades(LineaRecetaConstruccion carta) {
 			if (carta.cantidadEnMazo > carta.limite)
-				return $"\nLímite {carta.limite}: {datosDeCartas.lector.LeerDatos(carta.cartaID).nombre}[{carta.cantidad}]";
+				return $"\nLímite {carta.limite}: {ConstructorControl.Instancia.proveedorCartas.GetElemento(carta.cartaID).nombre}[{carta.cantidad}]";
 			return "";
 		}
 
@@ -87,7 +89,7 @@ namespace Bounds.Contruccion {
 			int suma = 0;
 			foreach (LineaRecetaConstruccion carta in cartas) {
 				cantidad += carta.cantidad;
-				suma += carta.cantidad * datosDeCartas.lector.LeerDatos(carta.cartaID).nivel;
+				suma += carta.cantidad * ConstructorControl.Instancia.proveedorCartas.GetElemento(carta.cartaID).nivel;
 			}
 
 			if (cantidad > 0) {

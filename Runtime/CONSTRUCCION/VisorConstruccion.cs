@@ -62,7 +62,7 @@ namespace Bounds.Contruccion {
 
 
 		private void InicializarVacio(LineaRecetaConstruccion linea) {
-			CartaBD carta = DatosDeCartas.Instancia.lector.LeerDatos(linea.cartaID);
+			CartaBD carta = ConstructorControl.Instancia.proveedorCartas.GetElemento(linea.cartaID);
 			casillaVacio.gameObject.SetActive(carta.clase == "VACIO");
 			casillaVacio.AgregarObservador(this);
 			if (FindAnyObjectByType<ConstructorControl>().vacioPrinpal != null) {

@@ -17,7 +17,7 @@ namespace Bounds.Contruccion {
 		public void Iniciar(LineaRecetaConstruccion linea, ISeleccionarCartaID padre, int limite, ITintero tintero, IlustradorDeCartas ilustrador) {
 			this.linea = linea;
 			this.padre = padre;
-			GetComponentInChildren<CartaFrente>().Inicializar(DatosDeCartas.Instancia, ilustrador, tintero);
+			GetComponentInChildren<CartaFrente>().Inicializar(ConstructorControl.Instancia.proveedorCartas, ilustrador, tintero);
 			GetComponentInChildren<CartaFrente>().Mostrar(linea.cartaID, linea.imagen, linea.rareza);
 			GetComponentInChildren<MantenerPresionado>().Iniciar(this);
 

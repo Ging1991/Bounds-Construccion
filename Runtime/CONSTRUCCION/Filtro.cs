@@ -3,6 +3,7 @@ using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Persistencia.Lectores;
 using Ging1991.Core;
+using Ging1991.Core.Interfaces;
 using Ging1991.Interfaces.Selecciones;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Bounds.Contruccion {
 
 	public class Filtro : MonoBehaviour {
 
-		public DatosDeCartas datosDeCartas;
+		public IProveedor<int, CartaBD> proveedorCartas;
 		public GrupoDeCasillas grupoClases;
 		public GrupoDeCasillas grupoInvocaciones;
 		public GrupoDeCasillas grupoNiveles;
@@ -26,6 +27,8 @@ namespace Bounds.Contruccion {
 		private List<string> cartasExplosion;
 
 		public void Inicializar() {
+			proveedorCartas = ConstructorControl.Instancia.proveedorCartas;
+
 			controladorClases = new();
 			controladorInvocaciones = new();
 			controladorNiveles = new();
@@ -90,7 +93,7 @@ namespace Bounds.Contruccion {
 			if (!iniciado)
 				return true;
 
-			CartaBD carta = datosDeCartas.lector.LeerDatos(cartaID);
+			CartaBD carta = proveedorCartas.GetElemento(cartaID);
 
 			// CLASES
 			if (grupoClases.opcionTodo.valor == false) {

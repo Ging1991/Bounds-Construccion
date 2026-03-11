@@ -21,14 +21,15 @@ using Bounds.Modulos.Persistencia;
 using Ging1991.Core.Interfaces;
 using Bounds.Musica;
 using Ging1991.Musica;
+using Bounds.Modulos.Cartas.Persistencia.Datos;
 
 namespace Bounds.Contruccion {
 
 	public class ConstructorControl : SingletonMonoBehaviour<ConstructorControl> {
 
 		public IlustradorDeCartas ilustradorDeCartas;
-		public DatosDeCartas datosDeCartas;
-		public DatosDeEfectos datosDeEfectos;
+		public IProveedor<int, CartaBD> proveedorCartas;
+		public IProveedor<string, EfectoTraduccion> selectorHabilidades;
 		public ITintero tintero;
 
 		public List<GameObject> opcionesMazo;
@@ -52,8 +53,6 @@ namespace Bounds.Contruccion {
 		public GestorDeSonidos gestorDeSonidos;
 
 		void Start() {
-			datosDeCartas.Inicializar();
-			datosDeEfectos.Inicializar();
 			parametrosControl.Inicializar();
 			parametros = parametrosControl.parametros;
 
@@ -67,6 +66,8 @@ namespace Bounds.Contruccion {
 			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
 			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
 			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
+			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direcciones["CARTAS_HABILIDADES"]);
 			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direcciones["SONIDOS"]));
 
@@ -95,7 +96,7 @@ namespace Bounds.Contruccion {
 			visor.name = "visor";
 
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
-				datosDeCartas, datosDeEfectos, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
+				proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
 				selectorTipos, selectorInvocaciones, selectorNombres);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
@@ -122,8 +123,8 @@ namespace Bounds.Contruccion {
 			List<LineaRecetaConstruccion> cartasEnMazo = FindAnyObjectByType<Recetario>().GetCartasEnMazo();
 
 			cartasEnMazo.Sort(delegate (LineaRecetaConstruccion carta1, LineaRecetaConstruccion carta2) {
-				int nivel1 = datosDeCartas.lector.LeerDatos(carta1.cartaID).nivel;
-				int nivel2 = datosDeCartas.lector.LeerDatos(carta2.cartaID).nivel;
+				int nivel1 = proveedorCartas.GetElemento(carta1.cartaID).nivel;
+				int nivel2 = proveedorCartas.GetElemento(carta2.cartaID).nivel;
 				if (nivel1 == nivel2)
 					return 0;
 				else if (nivel1 > nivel2)
@@ -135,7 +136,7 @@ namespace Bounds.Contruccion {
 			int i = 0;
 			foreach (LineaRecetaConstruccion linea in cartasEnMazo) {
 				float posicionY = -105 * i + 285;
-				string nombre = datosDeCartas.lector.LeerDatos(linea.cartaID).nombre;
+				string nombre = proveedorCartas.GetElemento(linea.cartaID).nombre;
 				GameObject opcion = instanciador.CrearOpcionMazo(linea, nombre, new Vector3(20, posicionY, 0));
 				Color colorLetra = tintero.GetColor($"NIVEL_{linea.rareza}");
 				opcion.GetComponentInChildren<ContadorSimbolo>().SetValor(colorLetra, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);

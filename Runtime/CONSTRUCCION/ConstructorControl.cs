@@ -44,6 +44,8 @@ namespace Bounds.Contruccion {
 		public MusicaDeFondo musicaDeFondo;
 
 		public IProveedor<int, string> selectorNombres;
+		public IProveedor<int, string> selectorEfectos;
+		public IProveedor<int, string> selectorAmbientacion;
 		public IProveedor<string, string> selectorClases;
 		public IProveedor<string, string> selectorTipos;
 		public IProveedor<string, string> selectorInvocaciones;
@@ -61,6 +63,8 @@ namespace Bounds.Contruccion {
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
 			);
 			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
+			selectorEfectos = new TraductorCartaID(parametros.direcciones["CARTA_EFECTOS"]);
+			selectorAmbientacion = new TraductorCartaID(parametros.direcciones["CARTA_AMBIENTACION"]);
 			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
 			selectorSistema = new TraductorTexto(parametros.direcciones["SISTEMA"]);
 			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
@@ -97,7 +101,7 @@ namespace Bounds.Contruccion {
 
 			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
 				proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
-				selectorTipos, selectorInvocaciones, selectorNombres);
+				selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos);
 			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
 		}
 

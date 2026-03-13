@@ -25,6 +25,7 @@ namespace Bounds.Contruccion {
 		private List<string> cartasEnero;
 		private List<string> cartasMeta;
 		private List<string> cartasExplosion;
+		private List<string> cartasOceano;
 
 		public void Inicializar() {
 			proveedorCartas = ConstructorControl.Instancia.proveedorCartas;
@@ -72,6 +73,14 @@ namespace Bounds.Contruccion {
 			cartasExplosion.AddRange(lectorColeccion.Leer().raras);
 			cartasExplosion.AddRange(lectorColeccion.Leer().miticas);
 			cartasExplosion.AddRange(lectorColeccion.Leer().secretas);
+
+			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("OCEANO"));
+			cartasOceano = new();
+			cartasOceano.AddRange(lectorColeccion.Leer().comunes);
+			cartasOceano.AddRange(lectorColeccion.Leer().infrecuentes);
+			cartasOceano.AddRange(lectorColeccion.Leer().raras);
+			cartasOceano.AddRange(lectorColeccion.Leer().miticas);
+			cartasOceano.AddRange(lectorColeccion.Leer().secretas);
 
 			iniciado = true;
 		}
@@ -125,6 +134,8 @@ namespace Bounds.Contruccion {
 				if (controladorColecciones.valores["META"] && !cartasMeta.Contains($"{cartaID}_META"))
 					return false;
 				if (controladorColecciones.valores["EXPLOSION"] && !(cartasExplosion.Contains($"{cartaID}_META") || cartasExplosion.Contains($"{cartaID}_GEMINI")))
+					return false;
+				if (controladorColecciones.valores["OCEANO"] && !(cartasOceano.Contains($"{cartaID}_META") || cartasOceano.Contains($"{cartaID}_GEMINI")))
 					return false;
 			}
 

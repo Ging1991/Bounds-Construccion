@@ -26,6 +26,7 @@ namespace Bounds.Contruccion {
 		private List<string> cartasMeta;
 		private List<string> cartasExplosion;
 		private List<string> cartasOceano;
+		private List<string> cartasBosque;
 
 		public void Inicializar() {
 			proveedorCartas = ConstructorControl.Instancia.proveedorCartas;
@@ -82,6 +83,17 @@ namespace Bounds.Contruccion {
 			cartasOceano.AddRange(lectorColeccion.Leer().miticas);
 			cartasOceano.AddRange(lectorColeccion.Leer().secretas);
 
+			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("BOSQUE"));
+			cartasBosque = new();
+			cartasBosque.AddRange(lectorColeccion.Leer().comunes);
+			cartasBosque.AddRange(lectorColeccion.Leer().infrecuentes);
+			cartasBosque.AddRange(lectorColeccion.Leer().raras);
+			cartasBosque.AddRange(lectorColeccion.Leer().miticas);
+			cartasBosque.AddRange(lectorColeccion.Leer().secretas);
+
+			foreach (string carta in cartasBosque)
+				Debug.Log($"BOSQUE: {carta}");
+
 			iniciado = true;
 		}
 
@@ -137,7 +149,10 @@ namespace Bounds.Contruccion {
 					return false;
 				if (controladorColecciones.valores["OCEANO"] && !(cartasOceano.Contains($"{cartaID}_META") || cartasOceano.Contains($"{cartaID}_GEMINI")))
 					return false;
+				if (controladorColecciones.valores["BOSQUE"] && !(cartasBosque.Contains($"{cartaID}_META") || cartasBosque.Contains($"{cartaID}_GEMINI")))
+					return false;
 			}
+
 
 			return true;
 		}

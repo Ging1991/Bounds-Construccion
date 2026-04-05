@@ -4087,7 +4087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290af22307abdc24f8b7ec28108b212d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Ging1991.Core::Ging1991.Core.GestorDeSonidos
-  maxInstancias: 5
+  maxInstancias: 10
 --- !u!114 &1948910191
 MonoBehaviour:
   m_ObjectHideFlags: 0

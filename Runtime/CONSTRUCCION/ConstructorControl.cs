@@ -179,7 +179,7 @@ namespace Bounds.Contruccion {
 					carta.cantidadEnMazo--;
 				}
 			}
-			//GetComponent<GestorDeSonidos>().ReproducirSonido("FxAdquisicion");
+			gestorDeSonidos.ReproducirSonido("FxAdquisicion");
 			ActualizarOpcionesMazo();
 			FindAnyObjectByType<Paginador>().Actualizar();
 		}

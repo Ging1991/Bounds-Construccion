@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Persistencia.Lectores;
 using Ging1991.Core;
 using Ging1991.Core.Interfaces;
-using Ging1991.Interfaces.Selecciones;
+using Ging1991.Interfaces.Entrada;
 using UnityEngine;
 
 namespace Bounds.Contruccion {

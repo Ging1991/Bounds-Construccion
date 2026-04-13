@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7987091463431980842}
   - component: {fileID: 5192106000686317008}
   - component: {fileID: 628566230873890408}
+  - component: {fileID: 6494981523699250210}
   m_Layer: 5
   m_Name: VisorConstruccion
   m_TagString: Untagged
@@ -94,9 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aff734d3518a7646a2909382763bd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temaRelleno: TEMA_RELLENO
-  esPersonalizado: 0
-  temaBorde: TEMA_BORDE
   rellenoOBJ: {fileID: 1627260988770118014}
 --- !u!114 &628566230873890408
 MonoBehaviour:
@@ -112,7 +110,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   casillaVacio: {fileID: 1692255108613400687}
   casillaPrincipal: {fileID: 3802096869896849836}
-  textoBoton: {fileID: 4762583141241600178}
+  textoBoton: {fileID: 5787835469149537147}
+--- !u!114 &6494981523699250210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897008792054399447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0b2f36aa315fd43a3f77652506b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objetivo: {fileID: 7987091463431980842}
+  codigo: BORDE
 --- !u!1 &1627260988770118014
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +136,7 @@ GameObject:
   - component: {fileID: 1117637962168317222}
   - component: {fileID: 4416041290474543427}
   - component: {fileID: 1361406464833160493}
+  - component: {fileID: 1460804716684400298}
   m_Layer: 5
   m_Name: Relleno
   m_TagString: Untagged
@@ -188,6 +201,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1460804716684400298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627260988770118014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0b2f36aa315fd43a3f77652506b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objetivo: {fileID: 1361406464833160493}
+  codigo: RELLENO_CLARO
 --- !u!1 &5232781957219888476
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +227,7 @@ GameObject:
   - component: {fileID: 466790859275193739}
   - component: {fileID: 3043195946609355681}
   - component: {fileID: 928395935978934619}
+  - component: {fileID: 7030982760615739671}
   m_Layer: 5
   m_Name: Casillas
   m_TagString: Untagged
@@ -279,10 +307,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aff734d3518a7646a2909382763bd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temaRelleno: RELLENO_CARTEL
-  esPersonalizado: 0
-  temaBorde: TEMA_BORDE
   rellenoOBJ: {fileID: 5942907585011795445}
+--- !u!114 &7030982760615739671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232781957219888476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0b2f36aa315fd43a3f77652506b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objetivo: {fileID: 3043195946609355681}
+  codigo: BORDE
 --- !u!1 &5942907585011795445
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +333,7 @@ GameObject:
   - component: {fileID: 5435534719153117613}
   - component: {fileID: 8765321957887800776}
   - component: {fileID: 6199464638689126822}
+  - component: {fileID: 4864827874353270638}
   m_Layer: 5
   m_Name: Relleno
   m_TagString: Untagged
@@ -358,6 +398,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4864827874353270638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942907585011795445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0b2f36aa315fd43a3f77652506b25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objetivo: {fileID: 6199464638689126822}
+  codigo: RELLENO
 --- !u!1001 &1543855086174092262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -374,6 +428,10 @@ PrefabInstance:
       propertyPath: codigo
       value: VACIO_PRINCIPAL
       objectReference: {fileID: 0}
+    - target: {fileID: 3633895843062886248, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: m_Size.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -388,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -396,15 +454,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -436,11 +494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -140
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -454,9 +512,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5374760821219135036, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: codigo
+      value: VACIO
+      objectReference: {fileID: 0}
     - target: {fileID: 5398522414220438789, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Name
       value: CasillaVacio
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438379828065289945, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: codigo
+      value: TEXTO
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -496,10 +562,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 314542040558431663, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
-      propertyPath: textoOBJ
-      value: 
-      objectReference: {fileID: 8890920905919118710}
-    - target: {fileID: 314542040558431663, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: temaBorde
       value: TEMA_BORDE
       objectReference: {fileID: 0}
@@ -515,9 +577,17 @@ PrefabInstance:
       propertyPath: temaRelleno
       value: RELLENO_BOTON
       objectReference: {fileID: 0}
+    - target: {fileID: 1236095545169679201, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: codigo
+      value: CERRAR
+      objectReference: {fileID: 0}
     - target: {fileID: 1258087339724995504, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: m_Name
       value: BotonCerrar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435777550978393412, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: m_Text
+      value: Cerrar
       objectReference: {fileID: 0}
     - target: {fileID: 2563626133896806687, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: m_Pivot.x
@@ -646,11 +716,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6238160103493400463, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
   m_PrefabInstance: {fileID: 1590926828125451570}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8890920905919118710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7887772105564571716, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
-  m_PrefabInstance: {fileID: 1590926828125451570}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3950567261147257381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -667,13 +732,17 @@ PrefabInstance:
       propertyPath: codigo
       value: CARTA_PRINCIPAL
       objectReference: {fileID: 0}
+    - target: {fileID: 3633895843062886248, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: m_Size.x
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -681,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -689,15 +758,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,11 +798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -140
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -747,9 +816,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5374760821219135036, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: codigo
+      value: EMBLEMA
+      objectReference: {fileID: 0}
     - target: {fileID: 5398522414220438789, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Name
       value: CasillaEmblema
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438379828065289945, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: codigo
+      value: TEXTO
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -868,6 +945,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8033950519862400982, guid: c7fd795050d8fe540a00c338b17c81e7, type: 3}
+      propertyPath: codigo
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -895,10 +976,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 314542040558431663, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
-      propertyPath: textoOBJ
-      value: 
-      objectReference: {fileID: 3371106304284552827}
-    - target: {fileID: 314542040558431663, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: temaBorde
       value: TEMA_BORDE
       objectReference: {fileID: 0}
@@ -914,9 +991,17 @@ PrefabInstance:
       propertyPath: temaRelleno
       value: RELLENO_BOTON
       objectReference: {fileID: 0}
+    - target: {fileID: 1236095545169679201, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: codigo
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1258087339724995504, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: m_Name
       value: BotonVender
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435777550978393412, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: m_Text
+      value: Vender
       objectReference: {fileID: 0}
     - target: {fileID: 2563626133896806687, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: m_Pivot.x
@@ -1040,17 +1125,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6238160103493400463, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
   m_PrefabInstance: {fileID: 4881459592755455551}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3371106304284552827 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7887772105564571716, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
-  m_PrefabInstance: {fileID: 4881459592755455551}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4762583141241600178 stripped
+--- !u!114 &5787835469149537147 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 118911636166975117, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1435777550978393412, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
   m_PrefabInstance: {fileID: 4881459592755455551}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3371106304284552827}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}

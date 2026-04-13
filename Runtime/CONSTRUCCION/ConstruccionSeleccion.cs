@@ -1,4 +1,5 @@
-﻿using Bounds.Infraestructura;
+﻿using Bounds.Entrenamiento;
+using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
@@ -19,9 +20,11 @@ namespace Bounds.Contruccion {
 		public MusicaDeFondo musicaDeFondo;
 		public ParametrosControl parametrosControl;
 		public IProveedor<int, CartaBD> proveedorCartas;
+		public PersonalizarUI personalizarUI;
 
 		void Start() {
 			parametrosControl.Inicializar();
+			personalizarUI.Personalizar();
 			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			IProveedor<string, Sprite> selectorImagenes = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],

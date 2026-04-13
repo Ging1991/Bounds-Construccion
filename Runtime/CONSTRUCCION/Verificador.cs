@@ -104,7 +104,7 @@ namespace Bounds.Contruccion {
 
 
 		public void MostrarMensajeError(string mensaje) {
-			VentanaControl.CrearVentanaAceptar(mensaje);
+			//VentanaControl.CrearVentanaAceptar(mensaje);
 		}
 
 

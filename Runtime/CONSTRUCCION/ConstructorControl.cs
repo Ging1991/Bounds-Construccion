@@ -12,8 +12,6 @@ using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Visor;
 using Bounds.Modulos.Visor.Persistencia;
-using Bounds.Persistencia.Lectores;
-using Ging1991.Interfaces.Contadores;
 using Bounds.Persistencia;
 using Bounds.Cofres;
 using Bounds.Persistencia.Parametros;
@@ -22,6 +20,8 @@ using Ging1991.Core.Interfaces;
 using Bounds.Musica;
 using Ging1991.Musica;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
+using Bounds.Entrenamiento;
+using Ging1991.Interfaces.Salida;
 
 namespace Bounds.Contruccion {
 
@@ -53,8 +53,11 @@ namespace Bounds.Contruccion {
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
 		public GestorDeSonidos gestorDeSonidos;
+		public PersonalizarUI personalizarUI;
+		public VisorConstruccion visorConstruccion;
 
 		void Start() {
+			personalizarUI.Personalizar();
 			parametrosControl.Inicializar();
 			parametros = parametrosControl.parametros;
 
@@ -87,22 +90,17 @@ namespace Bounds.Contruccion {
 
 			ActualizarOpcionesMazo();
 			FindAnyObjectByType<Filtro>().Inicializar();
+			visorConstruccion.GetComponentInChildren<VisorGeneral>().Inicializar(
+	proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
+	selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos);
+
 		}
 
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
-			GameObject visor = Instantiate(claseVisor, new Vector3(0, 0, 0), Quaternion.identity);
-			GameObject lienzo = GameObject.Find("LienzoVisor");
-			visor.transform.SetParent(lienzo.transform);
-			visor.transform.localScale = new Vector3(1, 1, 1);
-			visor.transform.localPosition = new Vector3(0, 0, 0);
-			visor.name = "visor";
-
-			visor.GetComponentInChildren<VisorGeneral>().Inicializar(
-				proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
-				selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos);
-			visor.GetComponent<VisorConstruccion>().Mostrar(linea, billetera, cofre);
+			visorConstruccion.gameObject.SetActive(true);
+			visorConstruccion.Mostrar(linea, billetera, cofre);
 		}
 
 
@@ -143,7 +141,7 @@ namespace Bounds.Contruccion {
 				string nombre = proveedorCartas.GetElemento(linea.cartaID).nombre;
 				GameObject opcion = instanciador.CrearOpcionMazo(linea, nombre, new Vector3(20, posicionY, 0));
 				Color colorLetra = tintero.GetColor($"NIVEL_{linea.rareza}");
-				opcion.GetComponentInChildren<ContadorSimbolo>().SetValor(colorLetra, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
+				opcion.GetComponentInChildren<Indicador>().SetValor(colorLetra, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
 				opcion.transform.localPosition = new Vector3(20, posicionY - 335, 0);
 				opcionesMazo.Add(opcion);
 				i++;

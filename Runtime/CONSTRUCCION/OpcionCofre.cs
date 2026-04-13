@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Modulos.Cartas;
-using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Ging1991.Core.Interfaces;
-using Ging1991.Interfaces.Contadores;
+using Ging1991.Interfaces.Salida;
 
 namespace Bounds.Contruccion {
 
@@ -21,7 +20,7 @@ namespace Bounds.Contruccion {
 			GetComponentInChildren<CartaFrente>().Mostrar(linea.cartaID, linea.imagen, linea.rareza);
 			GetComponentInChildren<MantenerPresionado>().Iniciar(this);
 
-			ContadorSimbolo contador = GetComponentInChildren<ContadorSimbolo>();
+			Indicador contador = GetComponentInChildren<Indicador>();
 			Color colorContador = tintero.GetColor($"NIVEL_{linea.rareza}");
 			contador.SetValor(colorContador, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
 			DefinirRestricciones(linea.cartaID, limite);
@@ -76,6 +75,9 @@ namespace Bounds.Contruccion {
 
 			GameObject visor = GameObject.Find("visor");
 			if (visor != null)
+				return false;
+
+			if (!GetComponentInChildren<MantenerPresionado>().estaPresionado)
 				return false;
 
 			return true;

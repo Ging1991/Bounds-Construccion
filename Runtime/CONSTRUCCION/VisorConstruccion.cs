@@ -1,11 +1,10 @@
 ﻿using Bounds.Cofres;
 using Bounds.Global.Mazos;
-using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Visor;
 using Bounds.Persistencia;
 using Ging1991.Core;
-using Ging1991.Interfaces.Selecciones;
+using Ging1991.Interfaces.Entrada;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +44,7 @@ namespace Bounds.Contruccion {
 
 		public void BotonCerrar() {
 			Bloqueador.BloquearGrupo("GLOBAL", false);
-			Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
 
 

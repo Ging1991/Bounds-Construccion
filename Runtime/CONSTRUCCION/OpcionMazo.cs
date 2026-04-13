@@ -43,6 +43,10 @@ namespace Bounds.Contruccion {
 				return;
 			}
 
+			if (!GetComponentInChildren<MantenerPresionado>().estaPresionado)
+				return;
+
+
 			if (!ClickeaDentroDeLaMascara(mascaraOBJ))
 				return;
 

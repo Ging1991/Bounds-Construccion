@@ -22,6 +22,7 @@ using Ging1991.Musica;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Entrenamiento;
 using Ging1991.Interfaces.Salida;
+using Ging1991.Ventanas;
 
 namespace Bounds.Contruccion {
 
@@ -53,13 +54,14 @@ namespace Bounds.Contruccion {
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
 		public GestorDeSonidos gestorDeSonidos;
-		public PersonalizarUI personalizarUI;
+		public ControlUIBounds personalizarUI;
 		public VisorConstruccion visorConstruccion;
+		public VentanaControl ventanaControl;
 
 		void Start() {
-			personalizarUI.Personalizar();
 			parametrosControl.Inicializar();
 			parametros = parametrosControl.parametros;
+			personalizarUI.Personalizar(parametros.direcciones["SISTEMA"], parametros.direcciones["COLORES"]);
 
 			ilustradorDeCartas = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],

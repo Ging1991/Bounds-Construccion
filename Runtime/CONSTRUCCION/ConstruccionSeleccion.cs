@@ -5,6 +5,7 @@ using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Persistencia;
 using Bounds.Musica;
+using Bounds.Persistencia;
 using Bounds.Persistencia.Parametros;
 using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;
@@ -20,11 +21,11 @@ namespace Bounds.Contruccion {
 		public MusicaDeFondo musicaDeFondo;
 		public ParametrosControl parametrosControl;
 		public IProveedor<int, CartaBD> proveedorCartas;
-		public PersonalizarUI personalizarUI;
+		public ControlUIBounds personalizarUI;
 
 		void Start() {
 			parametrosControl.Inicializar();
-			personalizarUI.Personalizar();
+			personalizarUI.Personalizar(parametrosControl.parametros.direcciones["SISTEMA"], parametrosControl.parametros.direcciones["COLORES"]);
 			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			IProveedor<string, Sprite> selectorImagenes = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],

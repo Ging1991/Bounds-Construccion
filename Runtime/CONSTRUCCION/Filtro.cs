@@ -90,9 +90,6 @@ namespace Bounds.Contruccion {
 			cartasBosque.AddRange(lectorColeccion.Leer().miticas);
 			cartasBosque.AddRange(lectorColeccion.Leer().secretas);
 
-			foreach (string carta in cartasBosque)
-				Debug.Log($"BOSQUE: {carta}");
-
 			iniciado = true;
 		}
 

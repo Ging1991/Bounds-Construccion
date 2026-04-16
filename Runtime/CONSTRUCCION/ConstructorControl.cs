@@ -23,6 +23,7 @@ using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Entrenamiento;
 using Ging1991.Interfaces.Salida;
 using Ging1991.Ventanas;
+using Ging1991.Persistencia.Proveedores;
 
 namespace Bounds.Contruccion {
 
@@ -70,10 +71,10 @@ namespace Bounds.Contruccion {
 			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
 			selectorEfectos = new TraductorCartaID(parametros.direcciones["CARTA_EFECTOS"]);
 			selectorAmbientacion = new TraductorCartaID(parametros.direcciones["CARTA_AMBIENTACION"]);
-			selectorClases = new TraductorTexto(parametros.direcciones["CARTA_CLASES"]);
-			selectorSistema = new TraductorTexto(parametros.direcciones["SISTEMA"]);
-			selectorTipos = new TraductorTexto(parametros.direcciones["CARTA_TIPOS"]);
-			selectorInvocaciones = new TraductorTexto(parametros.direcciones["CARTA_INVOCACIONES"]);
+			selectorClases = new ProveedorTexto(parametros.direcciones["CARTA_CLASES"], TipoLector.RECURSOS);
+			selectorSistema = new ProveedorTexto(parametros.direcciones["SISTEMA"], TipoLector.RECURSOS);
+			selectorTipos = new ProveedorTexto(parametros.direcciones["CARTA_TIPOS"], TipoLector.RECURSOS);
+			selectorInvocaciones = new ProveedorTexto(parametros.direcciones["CARTA_INVOCACIONES"], TipoLector.RECURSOS);
 			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
 			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
 			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direcciones["CARTAS_HABILIDADES"]);

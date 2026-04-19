@@ -85,6 +85,7 @@ namespace Bounds.Contruccion {
 
 			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
 
+			FindAnyObjectByType<Filtro>().Inicializar();
 			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
 			FindAnyObjectByType<Paginador>().Iniciar();
 
@@ -92,7 +93,6 @@ namespace Bounds.Contruccion {
 			opcionesMazo = new List<GameObject>();
 
 			ActualizarOpcionesMazo();
-			FindAnyObjectByType<Filtro>().Inicializar();
 			visorConstruccion.GetComponentInChildren<VisorGeneral>().Inicializar(
 	proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
 	selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos);

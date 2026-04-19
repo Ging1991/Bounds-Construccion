@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
+using Bounds.Persistencia;
 using Bounds.Persistencia.Lectores;
 using Ging1991.Core;
 using Ging1991.Core.Interfaces;
@@ -21,11 +22,14 @@ namespace Bounds.Contruccion {
 		private ControladorCasillas controladorNiveles;
 		private ControladorCasillas controladorColecciones;
 		public Transform panel;
-		private List<string> cartasEnero;
-		private List<string> cartasMeta;
-		private List<string> cartasExplosion;
-		private List<string> cartasOceano;
-		private List<string> cartasBosque;
+
+		private List<int> cartasExplosion;
+		private List<int> cartasOceano;
+		private List<int> cartasBosque;
+		private List<int> cartasMeta;
+		private List<int> cartasEnero;
+		private List<int> cartasPrincipiante;
+		private List<int> cartasColeccion = new();
 
 		public void Inicializar() {
 			proveedorCartas = ConstructorControl.Instancia.proveedorCartas;
@@ -50,52 +54,44 @@ namespace Bounds.Contruccion {
 			grupoNiveles.opcionTodo.Presionar();
 			grupoColecciones.opcionTodo.Presionar();
 
-			LectorColeccion lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("ENERO2026"));
-			cartasEnero = new();
-			cartasEnero.AddRange(lectorColeccion.Leer().comunes);
-			cartasEnero.AddRange(lectorColeccion.Leer().infrecuentes);
-			cartasEnero.AddRange(lectorColeccion.Leer().raras);
-			cartasEnero.AddRange(lectorColeccion.Leer().miticas);
-			cartasEnero.AddRange(lectorColeccion.Leer().secretas);
-
-			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("META"));
-			cartasMeta = new();
-			cartasMeta.AddRange(lectorColeccion.Leer().comunes);
-			cartasMeta.AddRange(lectorColeccion.Leer().infrecuentes);
-			cartasMeta.AddRange(lectorColeccion.Leer().raras);
-			cartasMeta.AddRange(lectorColeccion.Leer().miticas);
-			cartasMeta.AddRange(lectorColeccion.Leer().secretas);
-
-			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("EXPLOSION"));
-			cartasExplosion = new();
-			cartasExplosion.AddRange(lectorColeccion.Leer().comunes);
-			cartasExplosion.AddRange(lectorColeccion.Leer().infrecuentes);
-			cartasExplosion.AddRange(lectorColeccion.Leer().raras);
-			cartasExplosion.AddRange(lectorColeccion.Leer().miticas);
-			cartasExplosion.AddRange(lectorColeccion.Leer().secretas);
-
-			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("OCEANO"));
-			cartasOceano = new();
-			cartasOceano.AddRange(lectorColeccion.Leer().comunes);
-			cartasOceano.AddRange(lectorColeccion.Leer().infrecuentes);
-			cartasOceano.AddRange(lectorColeccion.Leer().raras);
-			cartasOceano.AddRange(lectorColeccion.Leer().miticas);
-			cartasOceano.AddRange(lectorColeccion.Leer().secretas);
-
-			lectorColeccion = new(ConstructorControl.Instancia.carpetaColecciones.Generar("BOSQUE"));
-			cartasBosque = new();
-			cartasBosque.AddRange(lectorColeccion.Leer().comunes);
-			cartasBosque.AddRange(lectorColeccion.Leer().infrecuentes);
-			cartasBosque.AddRange(lectorColeccion.Leer().raras);
-			cartasBosque.AddRange(lectorColeccion.Leer().miticas);
-			cartasBosque.AddRange(lectorColeccion.Leer().secretas);
+			cartasBosque = GenerarListaCartasID("BOSQUE");
+			cartasExplosion = GenerarListaCartasID("EXPLOSION");
+			cartasOceano = GenerarListaCartasID("OCEANO");
+			cartasMeta = GenerarListaCartasID("META");
+			cartasEnero = GenerarListaCartasID("ENERO2026");
+			cartasPrincipiante = GenerarListaCartasID("PRINCIPIANTE");
 
 			iniciado = true;
+		}
+
+		public List<int> GenerarListaCartasID(string codigo) {
+			Coleccion coleccion = new Coleccion(codigo, ConstructorControl.Instancia.carpetaColecciones.Generar(codigo));
+			List<int> cartasID = new();
+			foreach (var carta in coleccion.GetListaCompleta())
+				cartasID.Add(carta.cartaID);
+
+			return cartasID;
 		}
 
 
 		public List<LineaRecetaConstruccion> GetCartasFiltradas() {
 			List<LineaRecetaConstruccion> filtradas = new();
+			if (grupoColecciones.opcionTodo.valor == false) {
+				cartasColeccion.Clear();
+				if (controladorColecciones.valores["BOSQUE"])
+					cartasColeccion.AddRange(cartasBosque);
+				if (controladorColecciones.valores["EXPLOSION"])
+					cartasColeccion.AddRange(cartasExplosion);
+				if (controladorColecciones.valores["OCEANO"])
+					cartasColeccion.AddRange(cartasOceano);
+				if (controladorColecciones.valores["META"])
+					cartasColeccion.AddRange(cartasMeta);
+				if (controladorColecciones.valores["ENERO2026"])
+					cartasColeccion.AddRange(cartasEnero);
+				if (controladorColecciones.valores["PRINCIPIANTE"])
+					cartasColeccion.AddRange(cartasPrincipiante);
+			}
+
 
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {
 				if (CumpleCriterio(carta.cartaID))
@@ -131,31 +127,22 @@ namespace Bounds.Contruccion {
 			// NIVELES
 			if (grupoNiveles.opcionTodo.valor == false) {
 				string nivelCadena = (carta.nivel > 9) ? "10" : $"{carta.nivel}";
-				return controladorNiveles.valores[nivelCadena];
+				if (!controladorNiveles.valores[nivelCadena])
+					return false;
 			}
 
 			// COLECCIONES
 			if (grupoColecciones.opcionTodo.valor == false) {
-
-				if (controladorColecciones.valores["ENERO2026"] && !cartasEnero.Contains($"{cartaID}_GEMINI"))
-					return false;
-				if (controladorColecciones.valores["META"] && !cartasMeta.Contains($"{cartaID}_META"))
-					return false;
-				if (controladorColecciones.valores["EXPLOSION"] && !(cartasExplosion.Contains($"{cartaID}_META") || cartasExplosion.Contains($"{cartaID}_GEMINI")))
-					return false;
-				if (controladorColecciones.valores["OCEANO"] && !(cartasOceano.Contains($"{cartaID}_META") || cartasOceano.Contains($"{cartaID}_GEMINI")))
-					return false;
-				if (controladorColecciones.valores["BOSQUE"] && !(cartasBosque.Contains($"{cartaID}_META") || cartasBosque.Contains($"{cartaID}_GEMINI")))
+				if (!cartasColeccion.Contains(cartaID))
 					return false;
 			}
-
 
 			return true;
 		}
 
 
 		public void BotonMostrarFiltro() {
-			panel.localPosition = new Vector3(0, 75, 0);
+			panel.localPosition = new Vector3(0, 0, 0);
 			Bloqueador.BloquearGrupo("GLOBAL", true);
 		}
 

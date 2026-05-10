@@ -7,7 +7,7 @@ namespace Bounds.Salesforce {
 
 	public class ServicioEncontrarOponente : SalesforceAPI {
 
-		private static readonly string SERVICIO = "/services/apexrest/ServicioEncontrarOponente";
+		private static readonly string SERVICIO = "/services/apexrest/ServicioEncontrarOponenteV2";
 
 		public ServicioEncontrarOponente(Credencial credencial) : base(credencial) { }
 
@@ -29,7 +29,7 @@ namespace Bounds.Salesforce {
 			public string avatar;
 			public string nombreMazo;
 			public int vacio;
-			public List<int> cartas;
+			public List<string> cartas;
 		}
 
 

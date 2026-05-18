@@ -2274,6 +2274,7 @@ MonoBehaviour:
   - {fileID: 6662540008667254876}
   - {fileID: 7058436498790359733}
   - {fileID: 8868209076998430898}
+  - {fileID: 249473491346825398}
   opcionTodo: {fileID: 4002426337300969760}
   opcionNada: {fileID: 231154724439584118}
 --- !u!1001 &82684322388393727
@@ -2431,7 +2432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 148892614520460169, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: codigo
-      value: AURA
+      value: TRUENO
       objectReference: {fileID: 0}
     - target: {fileID: 3456581169741812441, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2444,6 +2445,10 @@ PrefabInstance:
     - target: {fileID: 3633895843062886248, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Size.x
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: m_Text
+      value: Tormenta
       objectReference: {fileID: 0}
     - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -2515,7 +2520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 120
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2531,21 +2536,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5374760821219135036, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: codigo
-      value: AURA
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5398522414220438789, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Name
-      value: Aura
+      value: Trueno
       objectReference: {fileID: 0}
     - target: {fileID: 5398522414220438789, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+--- !u!114 &249473491346825398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 148892614520460169, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+  m_PrefabInstance: {fileID: 100970192195121983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439229e3940ff08449adf829acf518a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5257964448154876145 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5304885305010424782, guid: 98c471e46bc44b245814ec22b855980e, type: 3}

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Persistencia;
-using Bounds.Persistencia.Lectores;
 using Ging1991.Core;
 using Ging1991.Core.Interfaces;
 using Ging1991.Interfaces.Entrada;
@@ -26,6 +25,7 @@ namespace Bounds.Contruccion {
 		private List<int> cartasExplosion;
 		private List<int> cartasOceano;
 		private List<int> cartasBosque;
+		private List<int> cartasTrueno;
 		private List<int> cartasMeta;
 		private List<int> cartasEnero;
 		private List<int> cartasPrincipiante;
@@ -58,6 +58,7 @@ namespace Bounds.Contruccion {
 			cartasExplosion = GenerarListaCartasID("EXPLOSION");
 			cartasOceano = GenerarListaCartasID("OCEANO");
 			cartasMeta = GenerarListaCartasID("META");
+			cartasTrueno = GenerarListaCartasID("TRUENO");
 			cartasEnero = GenerarListaCartasID("ENERO2026");
 			cartasPrincipiante = GenerarListaCartasID("PRINCIPIANTE");
 
@@ -86,11 +87,14 @@ namespace Bounds.Contruccion {
 					cartasColeccion.AddRange(cartasOceano);
 				if (controladorColecciones.valores["META"])
 					cartasColeccion.AddRange(cartasMeta);
+				if (controladorColecciones.valores["TRUENO"])
+					cartasColeccion.AddRange(cartasTrueno);
 				if (controladorColecciones.valores["ENERO2026"])
 					cartasColeccion.AddRange(cartasEnero);
 				if (controladorColecciones.valores["PRINCIPIANTE"])
 					cartasColeccion.AddRange(cartasPrincipiante);
 			}
+			Debug.Log($"Cartas en colección: {cartasColeccion.Count}");
 
 
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {

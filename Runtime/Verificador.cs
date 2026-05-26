@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Bounds.Global.Mazos;
 using Bounds.Infraestructura;
-using Bounds.Modulos.Cartas.Persistencia;
+using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Ging1991.Core.Interfaces;
-using Ging1991.Ventanas;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

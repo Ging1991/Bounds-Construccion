@@ -1,5 +1,5 @@
 ﻿using Bounds.Cofres;
-using Bounds.Global.Mazos;
+using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Visor;
 using Bounds.Persistencia;

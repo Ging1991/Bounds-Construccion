@@ -1,9 +1,7 @@
-﻿using Bounds.Entrenamiento;
-using Bounds.Infraestructura;
+﻿using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Modulos.Persistencia;
 using Bounds.Musica;
 using Bounds.Persistencia;
 using Bounds.Persistencia.Parametros;

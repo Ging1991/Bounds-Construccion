@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Bounds.Cofres;
-using Bounds.Global;
-using Bounds.Global.Mazos;
-using Bounds.Persistencia;
+using Bounds.Mazos;
 using Ging1991.Core;
 using UnityEngine;
 using UnityEngine.UI;

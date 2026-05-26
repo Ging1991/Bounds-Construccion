@@ -94,8 +94,6 @@ namespace Bounds.Contruccion {
 				if (controladorColecciones.valores["PRINCIPIANTE"])
 					cartasColeccion.AddRange(cartasPrincipiante);
 			}
-			Debug.Log($"Cartas en colección: {cartasColeccion.Count}");
-
 
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {
 				if (CumpleCriterio(carta.cartaID))

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
-using Bounds.Global.Mazos;
 using Ging1991.Core;
 using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Modulos.Cartas.Persistencia;
@@ -20,10 +19,10 @@ using Ging1991.Core.Interfaces;
 using Bounds.Musica;
 using Ging1991.Musica;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Entrenamiento;
 using Ging1991.Interfaces.Salida;
 using Ging1991.Ventanas;
 using Ging1991.Persistencia.Proveedores;
+using Bounds.Mazos;
 
 namespace Bounds.Contruccion {
 
@@ -94,8 +93,9 @@ namespace Bounds.Contruccion {
 
 			ActualizarOpcionesMazo();
 			visorConstruccion.GetComponentInChildren<VisorGeneral>().Inicializar(
-	proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
-	selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos);
+				proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
+				selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos
+			);
 
 		}
 

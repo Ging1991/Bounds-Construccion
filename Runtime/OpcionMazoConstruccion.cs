@@ -1,6 +1,4 @@
-﻿using Bounds.Global;
-using Bounds.Global.Mazos;
-using Bounds.Modulos.Cartas.Ilustradores;
+﻿using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Tienda;

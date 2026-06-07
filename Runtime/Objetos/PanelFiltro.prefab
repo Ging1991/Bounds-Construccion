@@ -6833,7 +6833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 148892614520460169, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: codigo
-      value: META
+      value: OSCURIDAD
       objectReference: {fileID: 0}
     - target: {fileID: 3456581169741812441, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6846,6 +6846,10 @@ PrefabInstance:
     - target: {fileID: 3633895843062886248, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Size.x
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: m_Text
+      value: Oscuridad
       objectReference: {fileID: 0}
     - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -6933,11 +6937,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5374760821219135036, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: codigo
-      value: META
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5398522414220438789, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Name
-      value: Meta
+      value: Oscuridad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

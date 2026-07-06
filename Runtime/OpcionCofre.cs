@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using Bounds.Modulos.Cartas.Tinteros;
-using Bounds.Modulos.Cartas;
-using Bounds.Modulos.Cartas.Ilustradores;
 using Ging1991.Core.Interfaces;
 using Ging1991.Interfaces.Salida;
+using Bounds.Cartas;
 
 namespace Bounds.Contruccion {
 
@@ -12,16 +10,17 @@ namespace Bounds.Contruccion {
 		private LineaRecetaConstruccion linea;
 		private ISeleccionarCartaID padre;
 		public GameObject contadorOBJ;
+		public CartaImagenID cartaImagenID;
 
-		public void Iniciar(LineaRecetaConstruccion linea, ISeleccionarCartaID padre, int limite, ITintero tintero, IlustradorDeCartas ilustrador) {
+		public void Iniciar(LineaRecetaConstruccion linea, ISeleccionarCartaID padre, int limite, CartaGenerador cartaGenerador) {
 			this.linea = linea;
 			this.padre = padre;
-			GetComponentInChildren<CartaFrente>().Inicializar(ConstructorControl.Instancia.proveedorCartas, ilustrador, tintero);
-			GetComponentInChildren<CartaFrente>().Mostrar(linea.cartaID, linea.imagen, linea.rareza);
+			cartaImagenID.generador = cartaGenerador;
+			cartaImagenID.MostrarCartaID(linea.cartaID, linea.imagen, linea.rareza);
 			GetComponentInChildren<MantenerPresionado>().Iniciar(this);
 
 			Indicador contador = GetComponentInChildren<Indicador>();
-			Color colorContador = tintero.GetColor($"NIVEL_{linea.rareza}");
+			Color colorContador = cartaGenerador.proveedorColores.GetElemento($"NIVEL_{linea.rareza}");
 			contador.SetValor(colorContador, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
 			DefinirRestricciones(linea.cartaID, limite);
 		}

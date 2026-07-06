@@ -3154,7 +3154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5283019, g: 0.027411893, b: 0.042277478, a: 1}
+  m_Color: {r: 0.64705884, g: 0.4627451, b: 0.078431375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4669,6 +4669,8 @@ GameObject:
   - component: {fileID: 1948910187}
   - component: {fileID: 1948910190}
   - component: {fileID: 1948910191}
+  - component: {fileID: 1948910192}
+  - component: {fileID: 1948910193}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -4727,6 +4729,8 @@ MonoBehaviour:
   personalizarUI: {fileID: 1352958644}
   visorConstruccion: {fileID: 1036570170}
   ventanaControl: {fileID: 716664763}
+  cartaGenerador: {fileID: 1948910192}
+  visorGenerador: {fileID: 1948910193}
 --- !u!114 &1948910187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4770,6 +4774,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
+--- !u!114 &1948910192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948910183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd0c2e325c6a134f9c9c56700085928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1948910193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948910183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de24c33eb55e2df4d828f139e678871c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1973335621 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6042740383191885581, guid: 6c11691c5ceb2614ca40280ebbc0f4e2, type: 3}

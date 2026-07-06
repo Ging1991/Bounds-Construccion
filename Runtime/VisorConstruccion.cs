@@ -1,8 +1,8 @@
 ﻿using Bounds.Cofres;
 using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Modulos.Visor;
 using Bounds.Persistencia;
+using Bounds.Visor;
 using Ging1991.Core;
 using Ging1991.Interfaces.Entrada;
 using UnityEngine;
@@ -18,6 +18,7 @@ namespace Bounds.Contruccion {
 		private Cofre cofre;
 		private Billetera billetera;
 		public Text textoBoton;
+		public VisorCartaID visorCartaID;
 
 		private int CalcularPrecio() {
 			int rareza = 1;
@@ -48,13 +49,14 @@ namespace Bounds.Contruccion {
 		}
 
 
-		public void Mostrar(LineaRecetaConstruccion linea, Billetera billetera, Cofre cofre) {
+		public void Mostrar(LineaRecetaConstruccion linea, Billetera billetera, Cofre cofre, VisorGenerador visorGenerador) {
 			this.billetera = billetera;
 			this.cofre = cofre;
 			lineaActual = linea;
 			textoBoton.text = $"Vender por ${CalcularPrecio()}";
 			Bloqueador.BloquearGrupo("GLOBAL", true);
-			GetComponentInChildren<VisorGeneral>().Mostrar(linea.cartaID, linea.imagen, linea.rareza);
+			visorCartaID.generador = visorGenerador;
+			visorCartaID.Mostrar(linea.cartaID, linea.imagen, linea.rareza);
 			InicializarVacio(linea);
 			InicializarPrincipal(linea);
 		}

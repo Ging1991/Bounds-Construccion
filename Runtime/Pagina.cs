@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Bounds.Modulos.Cartas.Ilustradores;
-using Bounds.Modulos.Cartas.Tinteros;
 using UnityEngine;
 
 namespace Bounds.Contruccion {
@@ -31,11 +30,10 @@ namespace Bounds.Contruccion {
 			int indice = 0;
 
 			Limitador limitador = new Limitador();
-			ITintero tintero = new TinteroBounds();
 			foreach (LineaRecetaConstruccion linea in cartas) {
 				OpcionCofre opcion = opciones[indice].GetComponent<OpcionCofre>();
 				opcion.gameObject.SetActive(true);
-				opcion.Iniciar(linea, this, limitador.GetLimite(linea.cartaID), tintero, ilustrador);
+				opcion.Iniciar(linea, this, limitador.GetLimite(linea.cartaID), ConstructorControl.Instancia.cartaGenerador);
 				indice++;
 			}
 

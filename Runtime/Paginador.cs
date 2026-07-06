@@ -39,7 +39,7 @@ namespace Bounds.Contruccion {
 
 		public void ActualizarContadorCofre() {
 			Text texto = GameObject.Find("ContadorCofre").GetComponentInChildren<Text>();
-			texto.text = "Cofre: " + FindAnyObjectByType<Recetario>().GetCantidadEnCofre() + " cartas de hasta 600 tipos de cartas diferentes.";
+			texto.text = "Cofre: " + FindAnyObjectByType<Recetario>().GetCantidadEnCofre() + " cartas de hasta 660 tipos de cartas diferentes.";
 		}
 
 

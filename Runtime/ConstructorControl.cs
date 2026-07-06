@@ -6,7 +6,6 @@ using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
 using Ging1991.Core;
-using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Visor;
@@ -23,6 +22,9 @@ using Ging1991.Interfaces.Salida;
 using Ging1991.Ventanas;
 using Ging1991.Persistencia.Proveedores;
 using Bounds.Mazos;
+using Bounds.Cartas;
+using Bounds.Persistencia.proveedores;
+using Bounds.Visor;
 
 namespace Bounds.Contruccion {
 
@@ -31,7 +33,6 @@ namespace Bounds.Contruccion {
 		public IlustradorDeCartas ilustradorDeCartas;
 		public IProveedor<int, CartaBD> proveedorCartas;
 		public IProveedor<string, EfectoTraduccion> selectorHabilidades;
-		public ITintero tintero;
 
 		public List<GameObject> opcionesMazo;
 		public GameObject claseVisor;
@@ -57,6 +58,8 @@ namespace Bounds.Contruccion {
 		public ControlUIBounds personalizarUI;
 		public VisorConstruccion visorConstruccion;
 		public VentanaControl ventanaControl;
+		public CartaGenerador cartaGenerador;
+		public VisorGenerador visorGenerador;
 
 		void Start() {
 			parametrosControl.Inicializar();
@@ -80,7 +83,14 @@ namespace Bounds.Contruccion {
 			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direcciones["SONIDOS"]));
 
-			tintero = new TinteroBounds();
+			cartaGenerador.Inicializar(
+				ilustradorDeCartas,
+				proveedorCartas,
+				new ProveedorColores(
+					parametrosControl.parametros.direcciones["COLORES"],
+					TipoLector.RECURSOS
+				)
+			);
 
 			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
 
@@ -90,20 +100,30 @@ namespace Bounds.Contruccion {
 
 			casillas = new Dictionary<string, bool>();
 			opcionesMazo = new List<GameObject>();
-
 			ActualizarOpcionesMazo();
-			visorConstruccion.GetComponentInChildren<VisorGeneral>().Inicializar(
-				proveedorCartas, selectorHabilidades, ilustradorDeCartas, tintero, selectorSistema, selectorClases,
-				selectorTipos, selectorInvocaciones, selectorNombres, selectorAmbientacion, selectorEfectos
+			visorGenerador.Inicializar(
+				proveedorCartas,
+				selectorHabilidades,
+				ilustradorDeCartas,
+				new ProveedorColores(
+					parametrosControl.parametros.direcciones["COLORES"],
+					TipoLector.RECURSOS
+				),
+				selectorSistema,
+				selectorClases,
+				selectorTipos,
+				selectorInvocaciones,
+				selectorNombres,
+				selectorAmbientacion,
+				selectorEfectos
 			);
-
 		}
 
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
 			visorConstruccion.gameObject.SetActive(true);
-			visorConstruccion.Mostrar(linea, billetera, cofre);
+			visorConstruccion.Mostrar(linea, billetera, cofre, visorGenerador);
 		}
 
 
@@ -143,7 +163,7 @@ namespace Bounds.Contruccion {
 				float posicionY = -105 * i + 285;
 				string nombre = proveedorCartas.GetElemento(linea.cartaID).nombre;
 				GameObject opcion = instanciador.CrearOpcionMazo(linea, nombre, new Vector3(20, posicionY, 0));
-				Color colorLetra = tintero.GetColor($"NIVEL_{linea.rareza}");
+				Color colorLetra = cartaGenerador.proveedorColores.GetElemento($"NIVEL_{linea.rareza}");
 				opcion.GetComponentInChildren<Indicador>().SetValor(colorLetra, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
 				opcion.transform.localPosition = new Vector3(20, posicionY - 335, 0);
 				opcionesMazo.Add(opcion);

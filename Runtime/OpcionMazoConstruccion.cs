@@ -1,6 +1,6 @@
-﻿using Bounds.Mazos;
+﻿using Bounds.Cartas;
+using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Modulos.Cartas.Tinteros;
 using Bounds.Tienda;
 using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;
@@ -15,16 +15,18 @@ namespace Bounds.Contruccion {
 
 		public bool seleccionado;
 		public string nombre;
-		public IProveedor<string, Sprite> ilustrador;
+		public ContenedorID contenedorID;
 
-		public void Inicializar(IProveedor<string, Sprite> ilustrador, IProveedor<int, CartaBD> proveedorCartas) {
-			this.ilustrador = ilustrador;
+		public void Inicializar(CartaGenerador cartaGenerador) {
 			MostrarPredeterminado();
 			Mazo mazo = new MazoJugador(nombre);
 
 			SetNombre(mazo.nombre);
-			if (mazo.emblema != null)
-				GetComponent<ContenedorDeCartas>().Inicializar(proveedorCartas, ilustrador, new TinteroBounds(), mazo.emblema.cartaID, mazo.emblema.imagen);
+			if (mazo.emblema != null) {
+				contenedorID.generador = cartaGenerador;
+				contenedorID.MostrarCartaID(mazo.emblema.cartaID, mazo.emblema.imagen);
+			}
+
 		}
 
 
@@ -70,7 +72,6 @@ namespace Bounds.Contruccion {
 
 
 		public void Eliminar() {
-			//lector.EliminarMazo(nombre);
 			gameObject.SetActive(false);
 		}
 

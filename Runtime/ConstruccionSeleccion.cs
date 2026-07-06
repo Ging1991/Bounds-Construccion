@@ -1,10 +1,12 @@
-﻿using Bounds.Infraestructura;
+﻿using Bounds.Cartas;
+using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Musica;
 using Bounds.Persistencia;
 using Bounds.Persistencia.Parametros;
+using Bounds.Persistencia.proveedores;
 using Ging1991.Core.Interfaces;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
@@ -20,20 +22,30 @@ namespace Bounds.Contruccion {
 		public ParametrosControl parametrosControl;
 		public IProveedor<int, CartaBD> proveedorCartas;
 		public ControlUIBounds personalizarUI;
+		public CartaGenerador cartaGenerador;
 
 		void Start() {
 			parametrosControl.Inicializar();
 			personalizarUI.Personalizar(parametrosControl.parametros.direcciones["SISTEMA"], parametrosControl.parametros.direcciones["COLORES"]);
 			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
-			IProveedor<string, Sprite> selectorImagenes = new IlustradorDeCartas(
+			IProveedor<string, Sprite> ilustradorDeCartas = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
 			);
 			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
 
+			cartaGenerador.Inicializar(
+				ilustradorDeCartas,
+				proveedorCartas,
+				new ProveedorColores(
+					parametrosControl.parametros.direcciones["COLORES"],
+					TipoLector.RECURSOS
+				)
+			);
+
 			GameObject[] mazos = GameObject.FindGameObjectsWithTag("mazo");
 			foreach (GameObject mazo in mazos) {
-				mazo.GetComponent<OpcionMazoConstruccion>().Inicializar(selectorImagenes, proveedorCartas);
+				mazo.GetComponent<OpcionMazoConstruccion>().Inicializar(cartaGenerador);
 			}
 
 		}

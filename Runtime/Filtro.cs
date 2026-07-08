@@ -26,6 +26,7 @@ namespace Bounds.Contruccion {
 		private List<int> cartasOceano;
 		private List<int> cartasBosque;
 		private List<int> cartasTrueno;
+		private List<int> cartasDivinidad;
 		private List<int> cartasOscuridad;
 		private List<int> cartasEnero;
 		private List<int> cartasPrincipiante;
@@ -59,6 +60,7 @@ namespace Bounds.Contruccion {
 			cartasOceano = GenerarListaCartasID("OCEANO");
 			cartasOscuridad = GenerarListaCartasID("OSCURIDAD");
 			cartasTrueno = GenerarListaCartasID("TRUENO");
+			cartasDivinidad = GenerarListaCartasID("DIVINIDAD");
 			cartasEnero = GenerarListaCartasID("ENERO2026");
 			cartasPrincipiante = GenerarListaCartasID("PRINCIPIANTE");
 
@@ -89,6 +91,8 @@ namespace Bounds.Contruccion {
 					cartasColeccion.AddRange(cartasOscuridad);
 				if (controladorColecciones.valores["TRUENO"])
 					cartasColeccion.AddRange(cartasTrueno);
+				if (controladorColecciones.valores["DIVINIDAD"])
+					cartasColeccion.AddRange(cartasDivinidad);
 				if (controladorColecciones.valores["ENERO2026"])
 					cartasColeccion.AddRange(cartasEnero);
 				if (controladorColecciones.valores["PRINCIPIANTE"])

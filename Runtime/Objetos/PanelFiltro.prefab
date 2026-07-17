@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23529412, g: 0.15686275, b: 0, a: 1}
+  m_Color: {r: 0.6862745, g: 0.49019608, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23529412, g: 0.15686275, b: 0, a: 1}
+  m_Color: {r: 0.6862745, g: 0.49019608, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23529412, g: 0.15686275, b: 0, a: 1}
+  m_Color: {r: 0.6862745, g: 0.49019608, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1847,7 +1847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorActivado: {r: 0.78431374, g: 0.6862745, b: 0.29411766, a: 1}
-  colorDesactivado: {r: 0.23529412, g: 0.15686275, b: 0, a: 1}
+  colorDesactivado: {r: 0.6862745, g: 0.49019608, b: 0.09803922, a: 1}
   "pesta\xF1as":
   - {fileID: 529978787694128347}
   - {fileID: 3037522116357560910}

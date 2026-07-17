@@ -8,7 +8,6 @@ using Ging1991.Persistencia.Lectores.Directos;
 using Ging1991.Core;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Ilustradores;
-using Bounds.Modulos.Visor;
 using Bounds.Modulos.Visor.Persistencia;
 using Bounds.Persistencia;
 using Bounds.Cofres;
@@ -216,8 +215,11 @@ namespace Bounds.Contruccion {
 
 
 		public void ActualizarContadorMazo() {
-			Text texto = GameObject.Find("VisorCantidad").GetComponentInChildren<Text>();
-			texto.text = $"Mazo: {FindAnyObjectByType<Recetario>().GetCantidadEnMazo()}/40 cartas\nPromedio: {FindAnyObjectByType<Verificador>().GetNivelPromedio()}";
+			string ret = selectorSistema.GetElemento("MAZO_CONTENIDO");
+			ret = ret.Replace("[CANTIDAD]", $"{FindAnyObjectByType<Recetario>().GetCantidadEnMazo()}");
+			ret = ret.Replace("[MAXIMO]", "40");
+			ret = ret.Replace("[PROMEDIO]", $"{FindAnyObjectByType<Verificador>().GetNivelPromedio()}");
+			GameObject.Find("VisorCantidad").GetComponentInChildren<Text>().text = ret;
 		}
 
 

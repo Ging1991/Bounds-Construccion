@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bounds.Cofres;
 using Ging1991.Core;
+using Ging1991.Interfaces.Personalizacion;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ namespace Bounds.Contruccion {
 		public int pagina;
 		public int maxPagina = 0;
 		private List<LineaRecetaConstruccion> cartasTotales;
+		public TextoUI paginaTexto;
 
 		public void Iniciar() {
 			pagina = 1;
@@ -38,8 +40,11 @@ namespace Bounds.Contruccion {
 		}
 
 		public void ActualizarContadorCofre() {
+			string ret = ConstructorControl.Instancia.selectorSistema.GetElemento("COFRE_CONTENIDO");
+			ret = ret.Replace("[CANTIDAD]", $"{FindAnyObjectByType<Recetario>().GetCantidadEnCofre()}");
+			ret = ret.Replace("[MAXIMO]", "660");
 			Text texto = GameObject.Find("ContadorCofre").GetComponentInChildren<Text>();
-			texto.text = "Cofre: " + FindAnyObjectByType<Recetario>().GetCantidadEnCofre() + " cartas de hasta 660 tipos de cartas diferentes.";
+			texto.text = ret;
 		}
 
 
@@ -61,10 +66,17 @@ namespace Bounds.Contruccion {
 
 		private void ActualizarVisorPagina() {
 			CalcularMaxPagina();
-			Text texto = GameObject.Find("PaginaActual").GetComponentInChildren<Text>();
-			texto.text = "Página " + pagina + "/" + maxPagina;
-			if (cartasTotales.Count == 0)
-				texto.text = "Pagina 1/1";
+			string ret = ConstructorControl.Instancia.selectorSistema.GetElemento("PAGINA [ACTUAL]/[MAXIMO]");
+
+			if (cartasTotales.Count == 0) {
+				ret = ret.Replace("[ACTUAL]", "1");
+				ret = ret.Replace("[MAXIMO]", "1");
+			}
+			else {
+				ret = ret.Replace("[ACTUAL]", $"{pagina}");
+				ret = ret.Replace("[MAXIMO]", $"{maxPagina}");
+			}
+			paginaTexto.SetTexto(ret);
 		}
 
 

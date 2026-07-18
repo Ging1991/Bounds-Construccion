@@ -42,7 +42,6 @@ namespace Bounds.Contruccion {
 		public Cofre cofre;
 		public ParametrosEscena parametros;
 		public ParametrosControl parametrosControl;
-		public MusicaDeFondo musicaDeFondo;
 
 		public IProveedor<int, string> selectorNombres;
 		public IProveedor<int, string> selectorEfectos;
@@ -60,9 +59,21 @@ namespace Bounds.Contruccion {
 		public CartaGenerador cartaGenerador;
 		public VisorGenerador visorGenerador;
 
+		private void InicializarMusica(string direccion) {
+			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
+			if (musicaAmbiental.actual != "GENERAL") {
+				musicaAmbiental.Inicializar(new ProveedorAudios(new DireccionRecursos(direccion)));
+				musicaAmbiental.Reproducir("GENERAL");
+			}
+		}
+
+
 		void Start() {
 			parametrosControl.Inicializar();
 			parametros = parametrosControl.parametros;
+
+			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
+
 			personalizarUI.Personalizar(parametros.direcciones["SISTEMA"], parametros.direcciones["COLORES"]);
 
 			ilustradorDeCartas = new IlustradorDeCartas(
@@ -79,7 +90,7 @@ namespace Bounds.Contruccion {
 			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
 			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
 			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direcciones["CARTAS_HABILIDADES"]);
-			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
+			//musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
 			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direcciones["SONIDOS"]));
 
 			cartaGenerador.Inicializar(

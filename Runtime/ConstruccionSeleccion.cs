@@ -8,6 +8,7 @@ using Bounds.Persistencia;
 using Bounds.Persistencia.Parametros;
 using Bounds.Persistencia.proveedores;
 using Ging1991.Core.Interfaces;
+using Ging1991.Musica;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
@@ -18,16 +19,26 @@ namespace Bounds.Contruccion {
 
 	public class ConstruccionSeleccion : MonoBehaviour {
 
-		public MusicaDeFondo musicaDeFondo;
 		public ParametrosControl parametrosControl;
 		public IProveedor<int, CartaBD> proveedorCartas;
 		public ControlUIBounds personalizarUI;
 		public CartaGenerador cartaGenerador;
 
+		private void InicializarMusica(string direccion) {
+			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
+			if (musicaAmbiental.actual != "GENERAL") {
+				musicaAmbiental.Inicializar(new ProveedorAudios(new DireccionRecursos(direccion)));
+				musicaAmbiental.Reproducir("GENERAL");
+			}
+		}
+
+
 		void Start() {
 			parametrosControl.Inicializar();
+			ParametrosEscena parametros = parametrosControl.parametros;
 			personalizarUI.Personalizar(parametrosControl.parametros.direcciones["SISTEMA"], parametrosControl.parametros.direcciones["COLORES"]);
-			musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
+			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
+
 			IProveedor<string, Sprite> ilustradorDeCartas = new IlustradorDeCartas(
 				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
 				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]

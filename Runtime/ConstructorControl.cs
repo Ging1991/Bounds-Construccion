@@ -171,11 +171,29 @@ namespace Bounds.Contruccion {
 			int i = 0;
 			foreach (LineaRecetaConstruccion linea in cartasEnMazo) {
 				float posicionY = -105 * i + 285;
-				string nombre = proveedorCartas.GetElemento(linea.cartaID).nombre;
-				GameObject opcion = instanciador.CrearOpcionMazo(linea, nombre, new Vector3(20, posicionY, 0));
-				Color colorLetra = cartaGenerador.proveedorColores.GetElemento($"NIVEL_{linea.rareza}");
-				opcion.GetComponentInChildren<Indicador>().SetValor(colorLetra, linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite);
-				opcion.transform.localPosition = new Vector3(20, posicionY - 335, 0);
+				GameObject opcion = instanciador.CrearOpcionMazo(linea, new Vector3(20, posicionY, 0));
+				opcion.transform.localPosition = new Vector3(-10, posicionY - 335, 0);
+
+				CartaBD cartaBD = proveedorCartas.GetElemento(linea.cartaID);
+
+				Color colorTinta = cartaGenerador.proveedorColores.GetElemento($"TINTA_{linea.rareza}");
+				Color colorNivelRelleno = cartaGenerador.proveedorColores.GetElemento($"NIVEL_{linea.rareza}");
+				CartaEnMazo cartaEnMazo = opcion.GetComponent<CartaEnMazo>();
+				cartaEnMazo.SetNivel(
+					cartaBD.nivel,
+					colorTinta,
+					colorNivelRelleno
+				);
+
+				cartaEnMazo.SetCantidad(linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite, colorNivelRelleno);
+				cartaEnMazo.SetNombre(cartaBD.nombre, colorTinta);
+
+				string claseColor = (cartaBD.clase != "CRIATURA") ? cartaBD.clase : cartaBD.datoCriatura.perfeccion;
+				cartaEnMazo.SetFondo(
+					cartaGenerador.proveedorColores.GetElemento($"RELLENO_{claseColor}"),
+					cartaGenerador.proveedorColores.GetElemento($"RELLENO_CLARO_{claseColor}")
+				);
+
 				opcionesMazo.Add(opcion);
 				i++;
 			}

@@ -12,17 +12,16 @@ namespace Bounds.Contruccion {
 		public GameObject mascaraOBJ;
 
 
-		public GameObject CrearOpcionMazo(LineaRecetaConstruccion linea, string texto, Vector3 posicion) {
+		public GameObject CrearOpcionMazo(LineaRecetaConstruccion linea, Vector3 posicion) {
 			GameObject panel = GameObject.Find("ContenidoMazo");
 			GameObject opcion = Instantiate(claseOpcionMazo, posicion, Quaternion.identity);
 			opcion.transform.SetParent(panel.transform);
 			opcion.GetComponent<RectTransform>().localPosition = posicion;
 			opcion.transform.localScale = new Vector3(1, 1, 1);
 			opcion.transform.localPosition = posicion;
-			OpcionMazo opcionMazo = opcion.GetComponentInChildren<OpcionMazo>();
+			CartaEnMazo opcionMazo = opcion.GetComponentInChildren<CartaEnMazo>();
 			opcionMazo.Iniciar(linea);
 			opcionMazo.mascaraOBJ = mascaraOBJ;
-			opcion.GetComponentInChildren<Text>().text = texto;
 			return opcion;
 		}
 
@@ -33,8 +32,8 @@ namespace Bounds.Contruccion {
 				cuadro = Instantiate(claseCuadroAceptar, posicion, Quaternion.identity);
 				GameObject lienzo = GameObject.Find("Lienzo");
 				cuadro.transform.SetParent(lienzo.transform);
-				cuadro.transform.localScale = new Vector3(1,1,1);
-				cuadro.transform.localPosition = new Vector3(0,0,0);
+				cuadro.transform.localScale = new Vector3(1, 1, 1);
+				cuadro.transform.localPosition = new Vector3(0, 0, 0);
 				cuadro.GetComponent<CuadroAceptar>().iniciar(texto);
 			}
 			return cuadro;

@@ -186,7 +186,10 @@ namespace Bounds.Contruccion {
 				);
 
 				cartaEnMazo.SetCantidad(linea.cantidadEnMazo, linea.cantidadEnCofre, linea.limite, colorNivelRelleno);
-				cartaEnMazo.SetNombre(cartaBD.nombre, colorTinta);
+				string nombre = visorGenerador.proveedorNombres.GetElemento(linea.cartaID);
+				if (string.IsNullOrEmpty(nombre))
+					nombre = cartaBD.nombre;
+				cartaEnMazo.SetNombre(nombre, colorTinta);
 
 				string claseColor = (cartaBD.clase != "CRIATURA") ? cartaBD.clase : cartaBD.datoCriatura.perfeccion;
 				cartaEnMazo.SetFondo(

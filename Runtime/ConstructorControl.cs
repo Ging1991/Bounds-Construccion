@@ -110,7 +110,6 @@ namespace Bounds.Contruccion {
 
 			casillas = new Dictionary<string, bool>();
 			opcionesMazo = new List<GameObject>();
-			ActualizarOpcionesMazo();
 			visorGenerador.Inicializar(
 				proveedorCartas,
 				selectorHabilidades,
@@ -127,6 +126,7 @@ namespace Bounds.Contruccion {
 				selectorAmbientacion,
 				selectorEfectos
 			);
+			ActualizarOpcionesMazo();
 		}
 
 

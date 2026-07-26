@@ -106,6 +106,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5834775024629573860}
     m_Modifications:
+    - target: {fileID: 2066975211604954902, guid: dbedce257dd33274f8873e78f0ea2a4d, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066975211604954902, guid: dbedce257dd33274f8873e78f0ea2a4d, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066975211604954902, guid: dbedce257dd33274f8873e78f0ea2a4d, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2309900894267417133, guid: dbedce257dd33274f8873e78f0ea2a4d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

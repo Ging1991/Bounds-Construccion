@@ -7,23 +7,23 @@ using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
 using Ging1991.Core;
 using Bounds.Modulos.Cartas.Persistencia;
-using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Visor.Persistencia;
 using Bounds.Persistencia;
 using Bounds.Cofres;
-using Bounds.Persistencia.Parametros;
 using Bounds.Modulos.Persistencia;
 using Ging1991.Core.Interfaces;
 using Bounds.Musica;
 using Ging1991.Musica;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Ging1991.Interfaces.Salida;
 using Ging1991.Ventanas;
 using Ging1991.Persistencia.Proveedores;
 using Bounds.Mazos;
 using Bounds.Cartas;
 using Bounds.Persistencia.proveedores;
 using Bounds.Visor;
+using Bounds.Sistema.Parametros;
+using Bounds.Sistema;
+using Bounds.Sistema.Ilustradores;
 
 namespace Bounds.Contruccion {
 
@@ -40,8 +40,8 @@ namespace Bounds.Contruccion {
 		public CartaMazo vacioPrinpal;
 		public CartaMazo cartaPrinpal;
 		public Cofre cofre;
-		public ParametrosEscena parametros;
-		public ParametrosControl parametrosControl;
+		public ParametrosGlobales parametros;
+		public ControlParametros parametrosControl;
 
 		public IProveedor<int, string> selectorNombres;
 		public IProveedor<int, string> selectorEfectos;
@@ -59,10 +59,10 @@ namespace Bounds.Contruccion {
 		public CartaGenerador cartaGenerador;
 		public VisorGenerador visorGenerador;
 
-		private void InicializarMusica(string direccion) {
+		private void InicializarMusica(Direccion direccion) {
 			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
 			if (musicaAmbiental.actual != "GENERAL") {
-				musicaAmbiental.Inicializar(new ProveedorAudios(new DireccionRecursos(direccion)));
+				musicaAmbiental.Inicializar(new ProveedorAudios(direccion));
 				musicaAmbiental.Reproducir("GENERAL");
 			}
 		}
@@ -72,37 +72,39 @@ namespace Bounds.Contruccion {
 			parametrosControl.Inicializar();
 			parametros = parametrosControl.parametros;
 
+			if (!RegistroGlobal.Instancia.inicializado)
+				RegistroGlobal.Instancia.Inicializar(parametros);
+
 			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
 
-			personalizarUI.Personalizar(parametros.direcciones["SISTEMA"], parametros.direcciones["COLORES"]);
+			personalizarUI.Personalizar(parametros.direccionesGeneradas["SISTEMA"], parametros.direccionesGeneradas["COLORES"]);
 
 			ilustradorDeCartas = new IlustradorDeCartas(
-				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
-				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
+				new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_RECURSO"]),
+				new DireccionDinamica(parametrosControl.parametros.direccionesGeneradas["CARTAS_DINAMICA"])
 			);
-			selectorNombres = new TraductorCartaID(parametros.direcciones["CARTA_NOMBRES"]);
-			selectorEfectos = new TraductorCartaID(parametros.direcciones["CARTA_EFECTOS"]);
-			selectorAmbientacion = new TraductorCartaID(parametros.direcciones["CARTA_AMBIENTACION"]);
-			selectorClases = new ProveedorTexto(parametros.direcciones["CARTA_CLASES"], TipoLector.RECURSOS);
-			selectorSistema = new ProveedorTexto(parametros.direcciones["SISTEMA"], TipoLector.RECURSOS);
-			selectorTipos = new ProveedorTexto(parametros.direcciones["CARTA_TIPOS"], TipoLector.RECURSOS);
-			selectorInvocaciones = new ProveedorTexto(parametros.direcciones["CARTA_INVOCACIONES"], TipoLector.RECURSOS);
-			carpetaColecciones = new(parametros.direcciones["COLECCIONES"]);
-			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
-			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direcciones["CARTAS_HABILIDADES"]);
-			//musicaDeFondo.Inicializar(parametrosControl.parametros.direcciones["MUSICA_TIENDA"]);
-			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direcciones["SONIDOS"]));
+			selectorNombres = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_NOMBRES"]);
+			selectorEfectos = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_EFECTOS"]);
+			selectorAmbientacion = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_AMBIENTACION"]);
+			selectorClases = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_CLASES"], TipoLector.RECURSOS);
+			selectorSistema = new ProveedorTexto(parametros.direccionesGeneradas["SISTEMA"], TipoLector.RECURSOS);
+			selectorTipos = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_TIPOS"], TipoLector.RECURSOS);
+			selectorInvocaciones = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_INVOCACIONES"], TipoLector.RECURSOS);
+			carpetaColecciones = new(parametros.direccionesGeneradas["COLECCIONES"]);
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_DATOS"]));
+			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direccionesGeneradas["CARTAS_HABILIDADES"]);
+			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["SONIDOS"]));
 
 			cartaGenerador.Inicializar(
 				ilustradorDeCartas,
 				proveedorCartas,
 				new ProveedorColores(
-					parametrosControl.parametros.direcciones["COLORES"],
+					parametrosControl.parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				)
 			);
 
-			cofre = new(parametros.direcciones["COFRE"], parametros.direcciones["COFRE_RECURSOS"]);
+			cofre = new(parametros.direccionesGeneradas["COFRE"], parametros.direccionesGeneradas["COFRE_RECURSOS"]);
 
 			FindAnyObjectByType<Filtro>().Inicializar();
 			FindAnyObjectByType<Recetario>().Iniciar(GetNombreMazo());
@@ -115,7 +117,7 @@ namespace Bounds.Contruccion {
 				selectorHabilidades,
 				ilustradorDeCartas,
 				new ProveedorColores(
-					parametrosControl.parametros.direcciones["COLORES"],
+					parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				),
 				selectorSistema,
@@ -131,9 +133,8 @@ namespace Bounds.Contruccion {
 
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
-			Billetera billetera = new Billetera(new DireccionDinamica("CONFIGURACION", "BILLETERA.json").Generar());
 			visorConstruccion.gameObject.SetActive(true);
-			visorConstruccion.Mostrar(linea, billetera, cofre, visorGenerador);
+			visorConstruccion.Mostrar(linea, RegistroGlobal.Instancia.billetera, cofre, visorGenerador);
 		}
 
 

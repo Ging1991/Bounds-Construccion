@@ -5,6 +5,7 @@
         "Bounds.Cartas",
         "Bounds.Cofres",
         "Bounds.Visor",
+        "Bounds.Sistema",
         "Bounds.Fisicas",
         "Bounds.Mazos",
         "Bounds.Visuales",

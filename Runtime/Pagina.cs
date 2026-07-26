@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Bounds.Modulos.Cartas.Ilustradores;
+using Bounds.Sistema.Ilustradores;
 using UnityEngine;
 
 namespace Bounds.Contruccion {

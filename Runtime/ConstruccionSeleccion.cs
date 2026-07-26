@@ -1,12 +1,13 @@
 ﻿using Bounds.Cartas;
 using Bounds.Infraestructura;
-using Bounds.Modulos.Cartas.Ilustradores;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Musica;
 using Bounds.Persistencia;
-using Bounds.Persistencia.Parametros;
 using Bounds.Persistencia.proveedores;
+using Bounds.Sistema;
+using Bounds.Sistema.Ilustradores;
+using Bounds.Sistema.Parametros;
 using Ging1991.Core.Interfaces;
 using Ging1991.Musica;
 using Ging1991.Persistencia.Direcciones;
@@ -19,15 +20,15 @@ namespace Bounds.Contruccion {
 
 	public class ConstruccionSeleccion : MonoBehaviour {
 
-		public ParametrosControl parametrosControl;
+		public ControlParametros parametrosControl;
 		public IProveedor<int, CartaBD> proveedorCartas;
 		public ControlUIBounds personalizarUI;
 		public CartaGenerador cartaGenerador;
 
-		private void InicializarMusica(string direccion) {
+		private void InicializarMusica(Direccion direccion) {
 			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
 			if (musicaAmbiental.actual != "GENERAL") {
-				musicaAmbiental.Inicializar(new ProveedorAudios(new DireccionRecursos(direccion)));
+				musicaAmbiental.Inicializar(new ProveedorAudios(direccion));
 				musicaAmbiental.Reproducir("GENERAL");
 			}
 		}
@@ -35,21 +36,23 @@ namespace Bounds.Contruccion {
 
 		void Start() {
 			parametrosControl.Inicializar();
-			ParametrosEscena parametros = parametrosControl.parametros;
-			personalizarUI.Personalizar(parametrosControl.parametros.direcciones["SISTEMA"], parametrosControl.parametros.direcciones["COLORES"]);
+			ParametrosGlobales parametros = parametrosControl.parametros;
+			RegistroGlobal.Instancia.Inicializar(parametros);
+			personalizarUI.Personalizar(parametrosControl.parametros.direccionesGeneradas["SISTEMA"], parametrosControl.parametros.direccionesGeneradas["COLORES"]);
 			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
 
 			IProveedor<string, Sprite> ilustradorDeCartas = new IlustradorDeCartas(
-				parametrosControl.parametros.direcciones["CARTAS_RECURSO"],
-				parametrosControl.parametros.direcciones["CARTAS_DINAMICA"]
+				new DireccionRecursos("Cartas/Imagenes"),
+				new DireccionDinamica("Cartas/Imagenes")
 			);
-			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direcciones["CARTAS_DATOS"]));
+
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_DATOS"]));
 
 			cartaGenerador.Inicializar(
 				ilustradorDeCartas,
 				proveedorCartas,
 				new ProveedorColores(
-					parametrosControl.parametros.direcciones["COLORES"],
+					parametrosControl.parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				)
 			);
@@ -85,7 +88,7 @@ namespace Bounds.Contruccion {
 
 
 		public void Volver() {
-			SceneManager.LoadScene(parametrosControl.parametros.escenaPadre);
+			SceneManager.LoadScene(parametrosControl.parametros.escenaAnterior);
 		}
 
 

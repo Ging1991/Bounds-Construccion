@@ -2,6 +2,7 @@
 using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Persistencia;
+using Bounds.Sistema;
 using Bounds.Visor;
 using Ging1991.Core;
 using Ging1991.Interfaces.Entrada;

@@ -707,6 +707,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5834775024629573860, guid: dd2e06eb3d06f33488669d105e6b83cb, type: 3}
   m_PrefabInstance: {fileID: 702610282}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &791027214
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1216628893145798716, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_Name
+      value: RegistroGlobal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880702948502693885, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37dab11df5d0511478f47191ce807ebf, type: 3}
 --- !u!1001 &845590959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -870,8 +927,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927556697}
-  - component: {fileID: 927556700}
   - component: {fileID: 927556701}
+  - component: {fileID: 927556702}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -896,19 +953,6 @@ Transform:
   - {fileID: 306364558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &927556700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 927556695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fbdc16ee7ec8fc4799ef21f316a392e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parametros: {fileID: 11400000, guid: fd37356195e5ec540a413b836f0ddbd0, type: 2}
 --- !u!114 &927556701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +966,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxInstancias: 0
+--- !u!114 &927556702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927556695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc17077f73ef944e99b579575a7ff5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parametros: {fileID: 11400000, guid: 8b1979d5b301a6c44b5c6500860c37b1, type: 2}
 --- !u!1001 &996730481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1576,7 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f682d8626760964981fcda2eefec03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parametrosControl: {fileID: 927556700}
+  parametrosControl: {fileID: 927556702}
   personalizarUI: {fileID: 306364556}
   cartaGenerador: {fileID: 2077717095}
 --- !u!114 &2077717095
@@ -1705,3 +1762,4 @@ SceneRoots:
   - {fileID: 1244124491}
   - {fileID: 1688043418}
   - {fileID: 1549073762}
+  - {fileID: 791027214}

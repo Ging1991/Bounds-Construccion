@@ -55,7 +55,7 @@ namespace Bounds.Contruccion {
 			grupoColecciones.opcionTodo.Presionar();
 
 			cartasBosque = GenerarListaCartasID("BOSQUE");
-			cartasExplosion = GenerarListaCartasID("EXPLOSION");
+			cartasExplosion = GenerarListaCartasID("LAUNIX");
 			cartasOceano = GenerarListaCartasID("OCEANO");
 			cartasOscuridad = GenerarListaCartasID("OSCURIDAD");
 			cartasTrueno = GenerarListaCartasID("TRUENO");
@@ -81,7 +81,7 @@ namespace Bounds.Contruccion {
 				cartasColeccion.Clear();
 				if (controladorColecciones.valores["BOSQUE"])
 					cartasColeccion.AddRange(cartasBosque);
-				if (controladorColecciones.valores["EXPLOSION"])
+				if (controladorColecciones.valores["LAUNIX"])
 					cartasColeccion.AddRange(cartasExplosion);
 				if (controladorColecciones.valores["OCEANO"])
 					cartasColeccion.AddRange(cartasOceano);

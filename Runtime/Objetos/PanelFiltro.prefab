@@ -5592,7 +5592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 148892614520460169, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: codigo
-      value: EXPLOSION
+      value: LAUNIX
       objectReference: {fileID: 0}
     - target: {fileID: 3456581169741812441, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_SizeDelta.x

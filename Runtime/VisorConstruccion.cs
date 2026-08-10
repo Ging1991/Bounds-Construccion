@@ -1,7 +1,6 @@
 ﻿using Bounds.Cofres;
 using Bounds.Mazos;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Persistencia;
 using Bounds.Sistema;
 using Bounds.Visor;
 using Ging1991.Core;
@@ -50,16 +49,20 @@ namespace Bounds.Contruccion {
 		}
 
 
-		public void Mostrar(LineaRecetaConstruccion linea, Billetera billetera, Cofre cofre, VisorGenerador visorGenerador) {
+		public void Inicializar(Billetera billetera, Cofre cofre, VisorGenerador visorGenerador) {
 			this.billetera = billetera;
 			this.cofre = cofre;
+			visorCartaID.generador = visorGenerador;
+			casillaPrincipal.AgregarObservador(this);
+		}
+
+		public void Mostrar(LineaRecetaConstruccion linea) {
 			lineaActual = linea;
 			textoBoton.text = $"Vender por ${CalcularPrecio()}";
 			Bloqueador.BloquearGrupo("GLOBAL", true);
-			visorCartaID.generador = visorGenerador;
 			visorCartaID.Mostrar(linea.cartaID, linea.imagen, linea.rareza);
-			InicializarVacio(linea);
-			InicializarPrincipal(linea);
+			//InicializarVacio(linea);
+			SetPrincipal(linea);
 		}
 
 
@@ -75,13 +78,15 @@ namespace Bounds.Contruccion {
 		}
 
 
-		private void InicializarPrincipal(LineaRecetaConstruccion linea) {
-			casillaPrincipal.AgregarObservador(this);
+		private void SetPrincipal(LineaRecetaConstruccion linea) {
 			if (ConstructorControl.Instancia.cartaPrinpal != null) {
-				if (ConstructorControl.Instancia.cartaPrinpal.cartaID == linea.cartaID) {
-					casillaPrincipal.Presionar();
-				}
+				SetValor(casillaPrincipal, ConstructorControl.Instancia.cartaPrinpal.cartaID == linea.cartaID);
 			}
+		}
+
+		private void SetValor(OpcionBinaria casilla, bool valor) {
+			if (casilla.valor != valor)
+				casilla.Presionar();
 		}
 
 

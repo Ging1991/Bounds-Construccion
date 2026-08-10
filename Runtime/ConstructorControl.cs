@@ -129,12 +129,13 @@ namespace Bounds.Contruccion {
 				selectorEfectos
 			);
 			ActualizarOpcionesMazo();
+			visorConstruccion.Inicializar(RegistroGlobal.Instancia.billetera, cofre, visorGenerador);
 		}
 
 
 		public void CrearVisor(LineaRecetaConstruccion linea) {
 			visorConstruccion.gameObject.SetActive(true);
-			visorConstruccion.Mostrar(linea, RegistroGlobal.Instancia.billetera, cofre, visorGenerador);
+			visorConstruccion.Mostrar(linea);
 		}
 
 

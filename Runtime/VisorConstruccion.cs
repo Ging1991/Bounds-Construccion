@@ -19,6 +19,7 @@ namespace Bounds.Contruccion {
 		private Billetera billetera;
 		public Text textoBoton;
 		public VisorCartaID visorCartaID;
+		public bool soloVisual = false;
 
 		private int CalcularPrecio() {
 			int rareza = 1;
@@ -30,6 +31,8 @@ namespace Bounds.Contruccion {
 				rareza = 1000;
 			if (lineaActual.rareza == "SEC")
 				rareza = 10000;
+			if (lineaActual.rareza == "LEG")
+				rareza = 100000;
 			return rareza * lineaActual.cantidad;
 		}
 
@@ -54,6 +57,7 @@ namespace Bounds.Contruccion {
 			this.cofre = cofre;
 			visorCartaID.generador = visorGenerador;
 			casillaPrincipal.AgregarObservador(this);
+			casillaVacio.AgregarObservador(this);
 		}
 
 		public void Mostrar(LineaRecetaConstruccion linea) {
@@ -61,19 +65,16 @@ namespace Bounds.Contruccion {
 			textoBoton.text = $"Vender por ${CalcularPrecio()}";
 			Bloqueador.BloquearGrupo("GLOBAL", true);
 			visorCartaID.Mostrar(linea.cartaID, linea.imagen, linea.rareza);
-			//InicializarVacio(linea);
+			SetVacio(linea);
 			SetPrincipal(linea);
 		}
 
 
-		private void InicializarVacio(LineaRecetaConstruccion linea) {
+		private void SetVacio(LineaRecetaConstruccion linea) {
 			CartaBD carta = ConstructorControl.Instancia.proveedorCartas.GetElemento(linea.cartaID);
 			casillaVacio.gameObject.SetActive(carta.clase == "VACIO");
-			casillaVacio.AgregarObservador(this);
-			if (FindAnyObjectByType<ConstructorControl>().vacioPrinpal != null) {
-				if (FindAnyObjectByType<ConstructorControl>().vacioPrinpal.cartaID == linea.cartaID) {
-					casillaVacio.Presionar();
-				}
+			if (ConstructorControl.Instancia.vacioPrinpal != null) {
+				SetValor(casillaVacio, ConstructorControl.Instancia.vacioPrinpal.cartaID == linea.cartaID);
 			}
 		}
 
@@ -85,8 +86,10 @@ namespace Bounds.Contruccion {
 		}
 
 		private void SetValor(OpcionBinaria casilla, bool valor) {
-			if (casilla.valor != valor)
+			if (casilla.valor != valor) {
+				soloVisual = true;
 				casilla.Presionar();
+			}
 		}
 
 
@@ -97,6 +100,10 @@ namespace Bounds.Contruccion {
 
 
 		public void AlternadorPresionado(Alternador alternador) {
+			if (soloVisual) {
+				soloVisual = false;
+				return;
+			}
 
 			ConstructorControl control = FindAnyObjectByType<ConstructorControl>();
 			CartaMazo cartaMazo = new CartaMazo(lineaActual.GetCodigo());

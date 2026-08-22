@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: codigo
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7372155611944751027, guid: dbedce257dd33274f8873e78f0ea2a4d, type: 3}
+      propertyPath: clave
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

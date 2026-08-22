@@ -19,40 +19,26 @@ using UnityEngine.SceneManagement;
 namespace Bounds.Contruccion {
 
 	public class ConstruccionSeleccion : MonoBehaviour {
-
-		public ControlParametros parametrosControl;
+		public ControlBounds controlBounds;
+		private ParametrosGlobales parametros;
 		public IProveedor<int, CartaBD> proveedorCartas;
-		public ControlUIBounds personalizarUI;
 		public CartaGenerador cartaGenerador;
 
-		private void InicializarMusica(Direccion direccion) {
-			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
-			if (musicaAmbiental.actual != "GENERAL") {
-				musicaAmbiental.Inicializar(new ProveedorAudios(direccion));
-				musicaAmbiental.Reproducir("GENERAL");
-			}
-		}
-
-
 		void Start() {
-			parametrosControl.Inicializar();
-			ParametrosGlobales parametros = parametrosControl.parametros;
-			RegistroGlobal.Instancia.Inicializar(parametros);
-			personalizarUI.Personalizar(parametrosControl.parametros.direccionesGeneradas["SISTEMA"], parametrosControl.parametros.direccionesGeneradas["COLORES"]);
-			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
+			parametros = controlBounds.InicializarEscena("GENERAL");
 
 			IProveedor<string, Sprite> ilustradorDeCartas = new IlustradorDeCartas(
 				new DireccionRecursos("Cartas/Imagenes"),
 				new DireccionDinamica("Cartas/Imagenes")
 			);
 
-			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_DATOS"]));
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_DATOS"]));
 
 			cartaGenerador.Inicializar(
 				ilustradorDeCartas,
 				proveedorCartas,
 				new ProveedorColores(
-					parametrosControl.parametros.direccionesGeneradas["COLORES"],
+					parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				)
 			);
@@ -88,7 +74,7 @@ namespace Bounds.Contruccion {
 
 
 		public void Volver() {
-			SceneManager.LoadScene(parametrosControl.parametros.escenaAnterior);
+			SceneManager.LoadScene(parametros.escenaAnterior);
 		}
 
 

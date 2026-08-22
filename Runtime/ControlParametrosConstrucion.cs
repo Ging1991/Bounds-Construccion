@@ -7,11 +7,11 @@ namespace Bounds.Limitado {
 
 		public override void SetParametros() {
 
-			parametros.direcciones["MUSICA_AMBIENTAL"] = new DireccionRecursos("Sonidos/Ambiente");
+			parametros.direcciones["MUSICA"] = new DireccionRecursos("Sonidos/Ambiente");
 
 			parametros.escenaAnterior = "TEST";
 			parametros.direccionesGeneradas["COLORES"] = new DireccionRecursos("Configuracion", "COLORES").Generar();
-			parametros.direccionesGeneradas["SISTEMA"] = new DireccionRecursos("Configuracion", "IDIOMA").Generar();
+			parametros.direccionesGeneradas["IDIOMA"] = new DireccionRecursos("Configuracion", "IDIOMA").Generar();
 			parametros.direccionesGeneradas["MUSICA_DERROTA"] = new DireccionRecursos("Musica", "DERROTA").Generar();
 			parametros.direccionesGeneradas["MUSICA_VICTORIA"] = new DireccionRecursos("Musica", "VICTORIA").Generar();
 			parametros.direccionesGeneradas["CARTAS_HABILIDADES"] = new DireccionRecursos("HABILIDADES", "HABILIDADES").Generar();

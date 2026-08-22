@@ -4,9 +4,9 @@ using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Bounds.Sistema;
 using Bounds.Visor;
 using Ging1991.Core;
+using Ging1991.Idiomas;
 using Ging1991.Interfaces.Entrada;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Bounds.Contruccion {
 
@@ -17,11 +17,13 @@ namespace Bounds.Contruccion {
 		public OpcionBinaria casillaPrincipal;
 		private Cofre cofre;
 		private Billetera billetera;
-		public Text textoBoton;
+		public Traduccion textoVender;
 		public VisorCartaID visorCartaID;
 		public bool soloVisual = false;
 
-		private int CalcularPrecio() {
+		public int CalcularPrecioActual() {
+			if (lineaActual == null)
+				return -1;
 			int rareza = 1;
 			if (lineaActual.rareza == "PLA")
 				rareza = 10;
@@ -37,7 +39,7 @@ namespace Bounds.Contruccion {
 		}
 
 		public void BotonVender() {
-			int precio = CalcularPrecio();
+			int precio = CalcularPrecioActual();
 			billetera.GanarOro(precio);
 			cofre.RemoverCarta(lineaActual);
 			cofre.Guardar();
@@ -62,7 +64,7 @@ namespace Bounds.Contruccion {
 
 		public void Mostrar(LineaRecetaConstruccion linea) {
 			lineaActual = linea;
-			textoBoton.text = $"Vender por ${CalcularPrecio()}";
+			Traductor.Instancia.Traducir(textoVender);
 			Bloqueador.BloquearGrupo("GLOBAL", true);
 			visorCartaID.Mostrar(linea.cartaID, linea.imagen, linea.rareza);
 			SetVacio(linea);

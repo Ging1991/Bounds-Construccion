@@ -1,4 +1,5 @@
 ﻿using Ging1991.Core.Interfaces;
+using Ging1991.Idiomas;
 using Ging1991.Interfaces.Personalizacion;
 using Ging1991.Interfaces.Salida;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Bounds.Contruccion {
 
 		public LineaRecetaConstruccion linea;
 		public GameObject mascaraOBJ;
-		public TextoUI nombreOBJ;
+		public Traduccion nombreOBJ;
 		public ContadorNumero nivelOBJ;
 		public Indicador cantidadOBJ;
 		public Image separador;
@@ -49,7 +50,7 @@ namespace Bounds.Contruccion {
 
 		public void SetNombre(string nombre, Color tinta) {
 			nombreOBJ.SetTexto(nombre);
-			nombreOBJ.SetColor(tinta);
+			//nombreOBJ.SetColor(tinta);
 			separador.color = tinta;
 		}
 

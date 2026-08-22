@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mascaraOBJ: {fileID: 0}
-  nombreOBJ: {fileID: 5720051184542151801}
+  nombreOBJ: {fileID: 3984090338560377593}
   nivelOBJ: {fileID: 2783078980980398289}
   cantidadOBJ: {fileID: 8168843719343085476}
   separador: {fileID: 2879391657930336808}
@@ -635,15 +635,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1680299428093972049, guid: c957312e7cb76bf4c8182b303d4509b8, type: 3}
   m_PrefabInstance: {fileID: 4422228541484918477}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5720051184542151801 stripped
+--- !u!114 &3984090338560377593 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8232401253668393652, guid: c957312e7cb76bf4c8182b303d4509b8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 726412561829356596, guid: c957312e7cb76bf4c8182b303d4509b8, type: 3}
   m_PrefabInstance: {fileID: 4422228541484918477}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553715281201135022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d80fdea8d95d124d8517d7a1a9e9f65, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ab57d110d60e354aaf90a970e296f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5653306166811715596

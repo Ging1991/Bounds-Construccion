@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bounds.Cofres;
 using Ging1991.Core;
+using Ging1991.Idiomas;
 using Ging1991.Interfaces.Personalizacion;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ namespace Bounds.Contruccion {
 		public int pagina;
 		public int maxPagina = 0;
 		private List<LineaRecetaConstruccion> cartasTotales;
-		public TextoUI paginaTexto;
+		public Traduccion paginaTexto;
 
 		public void Iniciar() {
 			pagina = 1;

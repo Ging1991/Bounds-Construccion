@@ -112,6 +112,7 @@ MonoBehaviour:
   casillaPrincipal: {fileID: 3802096869896849836}
   textoBoton: {fileID: 5787835469149537147}
   visorCartaID: {fileID: 3095851074268358261}
+  soloVisual: 0
 --- !u!114 &6494981523699250210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +434,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 350
       objectReference: {fileID: 0}
+    - target: {fileID: 3656110700254656700, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: clave
+      value: VACIO
+      objectReference: {fileID: 0}
     - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Text
       value: Vacio
@@ -706,6 +711,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7569600357879440865, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: clave
+      value: CERRAR
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -740,6 +749,10 @@ PrefabInstance:
     - target: {fileID: 3633895843062886248, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Size.x
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656110700254656700, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
+      propertyPath: clave
+      value: EMBLEMA
       objectReference: {fileID: 0}
     - target: {fileID: 5214440729324042265, guid: 98c471e46bc44b245814ec22b855980e, type: 3}
       propertyPath: m_Text
@@ -1013,6 +1026,10 @@ PrefabInstance:
     - target: {fileID: 5481560867513843065, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569600357879440865, guid: 9b75a52dcb1d91e499cb9517e19aad1c, type: 3}
+      propertyPath: clave
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

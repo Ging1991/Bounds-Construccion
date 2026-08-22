@@ -8,7 +8,6 @@ using Ging1991.Persistencia.Lectores.Directos;
 using Ging1991.Core;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Visor.Persistencia;
-using Bounds.Persistencia;
 using Bounds.Cofres;
 using Bounds.Modulos.Persistencia;
 using Ging1991.Core.Interfaces;
@@ -24,11 +23,15 @@ using Bounds.Visor;
 using Bounds.Sistema.Parametros;
 using Bounds.Sistema;
 using Bounds.Sistema.Ilustradores;
+using Ging1991.Idiomas;
+using Bounds.Construccion;
 
 namespace Bounds.Contruccion {
 
 	public class ConstructorControl : SingletonMonoBehaviour<ConstructorControl> {
 
+		public ControlBounds controlBounds;
+		private ParametrosGlobales parametros;
 		public IlustradorDeCartas ilustradorDeCartas;
 		public IProveedor<int, CartaBD> proveedorCartas;
 		public IProveedor<string, EfectoTraduccion> selectorHabilidades;
@@ -40,9 +43,6 @@ namespace Bounds.Contruccion {
 		public CartaMazo vacioPrinpal;
 		public CartaMazo cartaPrinpal;
 		public Cofre cofre;
-		public ParametrosGlobales parametros;
-		public ControlParametros parametrosControl;
-
 		public IProveedor<int, string> selectorNombres;
 		public IProveedor<int, string> selectorEfectos;
 		public IProveedor<int, string> selectorAmbientacion;
@@ -53,53 +53,36 @@ namespace Bounds.Contruccion {
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
 		public GestorDeSonidos gestorDeSonidos;
-		public ControlUIBounds personalizarUI;
 		public VisorConstruccion visorConstruccion;
 		public VentanaControl ventanaControl;
 		public CartaGenerador cartaGenerador;
 		public VisorGenerador visorGenerador;
-
-		private void InicializarMusica(Direccion direccion) {
-			MusicaAmbiental musicaAmbiental = MusicaAmbiental.Instancia;
-			if (musicaAmbiental.actual != "GENERAL") {
-				musicaAmbiental.Inicializar(new ProveedorAudios(direccion));
-				musicaAmbiental.Reproducir("GENERAL");
-			}
-		}
-
+		public TraductorConstruccion traductorEspecial;
 
 		void Start() {
-			parametrosControl.Inicializar();
-			parametros = parametrosControl.parametros;
-
-			if (!RegistroGlobal.Instancia.inicializado)
-				RegistroGlobal.Instancia.Inicializar(parametros);
-
-			InicializarMusica(parametros.direcciones["MUSICA_AMBIENTAL"]);
-
-			personalizarUI.Personalizar(parametros.direccionesGeneradas["SISTEMA"], parametros.direccionesGeneradas["COLORES"]);
+			parametros = controlBounds.InicializarEscena("GENERAL", traductorEspecial);
 
 			ilustradorDeCartas = new IlustradorDeCartas(
-				new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_RECURSO"]),
-				new DireccionDinamica(parametrosControl.parametros.direccionesGeneradas["CARTAS_DINAMICA"])
+				new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_RECURSO"]),
+				new DireccionDinamica(parametros.direccionesGeneradas["CARTAS_DINAMICA"])
 			);
 			selectorNombres = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_NOMBRES"]);
 			selectorEfectos = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_EFECTOS"]);
 			selectorAmbientacion = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_AMBIENTACION"]);
 			selectorClases = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_CLASES"], TipoLector.RECURSOS);
-			selectorSistema = new ProveedorTexto(parametros.direccionesGeneradas["SISTEMA"], TipoLector.RECURSOS);
+			selectorSistema = new ProveedorTexto(parametros.direccionesGeneradas["IDIOMA"], TipoLector.RECURSOS);
 			selectorTipos = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_TIPOS"], TipoLector.RECURSOS);
 			selectorInvocaciones = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_INVOCACIONES"], TipoLector.RECURSOS);
 			carpetaColecciones = new(parametros.direccionesGeneradas["COLECCIONES"]);
-			proveedorCartas = new LectorCartas(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["CARTAS_DATOS"]));
-			selectorHabilidades = new LectorHabilidades(parametrosControl.parametros.direccionesGeneradas["CARTAS_HABILIDADES"]);
-			gestorDeSonidos.Inicializar(new DireccionRecursos(parametrosControl.parametros.direccionesGeneradas["SONIDOS"]));
+			proveedorCartas = new LectorCartas(new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_DATOS"]));
+			selectorHabilidades = new LectorHabilidades(parametros.direccionesGeneradas["CARTAS_HABILIDADES"]);
+			gestorDeSonidos.Inicializar(new DireccionRecursos(parametros.direccionesGeneradas["SONIDOS"]));
 
 			cartaGenerador.Inicializar(
 				ilustradorDeCartas,
 				proveedorCartas,
 				new ProveedorColores(
-					parametrosControl.parametros.direccionesGeneradas["COLORES"],
+					parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				)
 			);

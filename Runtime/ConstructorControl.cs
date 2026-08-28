@@ -11,7 +11,6 @@ using Bounds.Modulos.Visor.Persistencia;
 using Bounds.Cofres;
 using Bounds.Modulos.Persistencia;
 using Ging1991.Core.Interfaces;
-using Bounds.Musica;
 using Ging1991.Musica;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
 using Ging1991.Ventanas;
@@ -23,7 +22,6 @@ using Bounds.Visor;
 using Bounds.Sistema.Parametros;
 using Bounds.Sistema;
 using Bounds.Sistema.Ilustradores;
-using Ging1991.Idiomas;
 using Bounds.Construccion;
 
 namespace Bounds.Contruccion {
@@ -49,7 +47,6 @@ namespace Bounds.Contruccion {
 		public IProveedor<string, string> selectorClases;
 		public IProveedor<string, string> selectorTipos;
 		public IProveedor<string, string> selectorInvocaciones;
-		public IProveedor<string, string> selectorSistema;
 		public DireccionRecursos carpetaColecciones;
 		public InstanciadorConstruir instanciador;
 		public GestorDeSonidos gestorDeSonidos;
@@ -70,7 +67,6 @@ namespace Bounds.Contruccion {
 			selectorEfectos = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_EFECTOS"]);
 			selectorAmbientacion = new TraductorCartaID(parametros.direccionesGeneradas["CARTA_AMBIENTACION"]);
 			selectorClases = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_CLASES"], TipoLector.RECURSOS);
-			selectorSistema = new ProveedorTexto(parametros.direccionesGeneradas["IDIOMA"], TipoLector.RECURSOS);
 			selectorTipos = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_TIPOS"], TipoLector.RECURSOS);
 			selectorInvocaciones = new ProveedorTexto(parametros.direccionesGeneradas["CARTA_INVOCACIONES"], TipoLector.RECURSOS);
 			carpetaColecciones = new(parametros.direccionesGeneradas["COLECCIONES"]);
@@ -103,7 +99,7 @@ namespace Bounds.Contruccion {
 					parametros.direccionesGeneradas["COLORES"],
 					TipoLector.RECURSOS
 				),
-				selectorSistema,
+				RegistroGlobal.Instancia.proveedorIdioma,
 				selectorClases,
 				selectorTipos,
 				selectorInvocaciones,
@@ -232,7 +228,7 @@ namespace Bounds.Contruccion {
 
 
 		public void ActualizarContadorMazo() {
-			string ret = selectorSistema.GetElemento("MAZO_CONTENIDO");
+			string ret = RegistroGlobal.Instancia.proveedorIdioma.GetElemento("MAZO_CONTENIDO");
 			ret = ret.Replace("[CANTIDAD]", $"{FindAnyObjectByType<Recetario>().GetCantidadEnMazo()}");
 			ret = ret.Replace("[MAXIMO]", "40");
 			ret = ret.Replace("[PROMEDIO]", $"{FindAnyObjectByType<Verificador>().GetNivelPromedio()}");

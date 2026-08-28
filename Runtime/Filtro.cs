@@ -129,6 +129,8 @@ namespace Bounds.Contruccion {
 			// NIVELES
 			if (grupoNiveles.opcionTodo.valor == false) {
 				string nivelCadena = (carta.nivel > 9) ? "10" : $"{carta.nivel}";
+				if (nivelCadena == "0")
+					nivelCadena = "1";
 				if (!controladorNiveles.valores[nivelCadena])
 					return false;
 			}

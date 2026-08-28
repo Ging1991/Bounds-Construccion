@@ -4765,7 +4765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290af22307abdc24f8b7ec28108b212d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Ging1991.Core::Ging1991.Core.GestorDeSonidos
-  maxInstancias: 10
+  maxInstancias: 15
 --- !u!114 &1948910192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5265,6 +5265,10 @@ PrefabInstance:
     - target: {fileID: 1062974547307361194, guid: 44245951f404d704297b2a9ac1e8cbe1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945448447730541941, guid: 44245951f404d704297b2a9ac1e8cbe1, type: 3}
+      propertyPath: m_Text
+      value: Niveles1
       objectReference: {fileID: 0}
     - target: {fileID: 7547036265268259533, guid: 44245951f404d704297b2a9ac1e8cbe1, type: 3}
       propertyPath: m_Name

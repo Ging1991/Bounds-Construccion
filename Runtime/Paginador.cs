@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Bounds.Cofres;
+using Bounds.Sistema;
 using Ging1991.Core;
 using Ging1991.Idiomas;
 using Ging1991.Interfaces.Personalizacion;
@@ -41,9 +42,9 @@ namespace Bounds.Contruccion {
 		}
 
 		public void ActualizarContadorCofre() {
-			string ret = ConstructorControl.Instancia.selectorSistema.GetElemento("COFRE_CONTENIDO");
+			string ret = RegistroGlobal.Instancia.proveedorIdioma.GetElemento("COFRE_CONTENIDO");
 			ret = ret.Replace("[CANTIDAD]", $"{FindAnyObjectByType<Recetario>().GetCantidadEnCofre()}");
-			ret = ret.Replace("[MAXIMO]", "660");
+			ret = ret.Replace("[MAXIMO]", "680");
 			Text texto = GameObject.Find("ContadorCofre").GetComponentInChildren<Text>();
 			texto.text = ret;
 		}
@@ -67,7 +68,7 @@ namespace Bounds.Contruccion {
 
 		private void ActualizarVisorPagina() {
 			CalcularMaxPagina();
-			string ret = ConstructorControl.Instancia.selectorSistema.GetElemento("PAGINA [ACTUAL]/[MAXIMO]");
+			string ret = RegistroGlobal.Instancia.proveedorIdioma.GetElemento("PAGINA [ACTUAL]/[MAXIMO]");
 
 			if (cartasTotales.Count == 0) {
 				ret = ret.Replace("[ACTUAL]", "1");

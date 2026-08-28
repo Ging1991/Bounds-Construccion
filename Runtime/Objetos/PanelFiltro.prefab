@@ -1058,11 +1058,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab57d110d60e354aaf90a970e296f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoOBJ: {fileID: 229542533267699886}
+  textoOBJ: {fileID: 4945448447730541941}
   clave: NIVELES
   destruirAlTraducir: 1
   esEspecial: 0
   esAutotraducible: 0
+  opciones: []
 --- !u!1 &4390592250901495853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,11 +1900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab57d110d60e354aaf90a970e296f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoOBJ: {fileID: 229542533267699886}
+  textoOBJ: {fileID: 3621233054303841885}
   clave: INVOCACIONES
   destruirAlTraducir: 1
   esEspecial: 0
   esAutotraducible: 0
+  opciones: []
 --- !u!1 &5877418376023488631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,6 +2804,7 @@ MonoBehaviour:
   destruirAlTraducir: 1
   esEspecial: 0
   esAutotraducible: 0
+  opciones: []
 --- !u!1 &9162472704582147939
 GameObject:
   m_ObjectHideFlags: 0

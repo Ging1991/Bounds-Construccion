@@ -2,14 +2,11 @@
 using Bounds.Infraestructura;
 using Bounds.Modulos.Cartas.Persistencia;
 using Bounds.Modulos.Cartas.Persistencia.Datos;
-using Bounds.Musica;
-using Bounds.Persistencia;
 using Bounds.Persistencia.proveedores;
 using Bounds.Sistema;
 using Bounds.Sistema.Ilustradores;
 using Bounds.Sistema.Parametros;
 using Ging1991.Core.Interfaces;
-using Ging1991.Musica;
 using Ging1991.Persistencia.Direcciones;
 using Ging1991.Persistencia.Lectores;
 using Ging1991.Persistencia.Lectores.Directos;
@@ -28,8 +25,8 @@ namespace Bounds.Contruccion {
 			parametros = controlBounds.InicializarEscena("GENERAL");
 
 			IProveedor<string, Sprite> ilustradorDeCartas = new IlustradorDeCartas(
-				new DireccionRecursos("Cartas/Imagenes"),
-				new DireccionDinamica("Cartas/Imagenes")
+				new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_RECURSO"]),
+				new DireccionDinamica(parametros.direccionesGeneradas["CARTAS_DINAMICA"])
 			);
 
 			proveedorCartas = new LectorCartas(new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_DATOS"]));

@@ -37,14 +37,14 @@ namespace Bounds.Contruccion {
 			});
 
 			FindAnyObjectByType<Pagina>().Cargar(cartas);
-			ActualizarVisorPagina();
 			ActualizarContadorCofre();
+			Traductor.Instancia.Traducir(paginaTexto);
 		}
 
 		public void ActualizarContadorCofre() {
 			string ret = RegistroGlobal.Instancia.proveedorIdioma.GetElemento("COFRE_CONTENIDO");
 			ret = ret.Replace("[CANTIDAD]", $"{FindAnyObjectByType<Recetario>().GetCantidadEnCofre()}");
-			ret = ret.Replace("[MAXIMO]", "680");
+			ret = ret.Replace("[MAXIMO]", "700");
 			Text texto = GameObject.Find("ContadorCofre").GetComponentInChildren<Text>();
 			texto.text = ret;
 		}
@@ -66,7 +66,7 @@ namespace Bounds.Contruccion {
 		}
 
 
-		private void ActualizarVisorPagina() {
+		public string TextoVisorPagina() {
 			CalcularMaxPagina();
 			string ret = RegistroGlobal.Instancia.proveedorIdioma.GetElemento("PAGINA [ACTUAL]/[MAXIMO]");
 
@@ -78,7 +78,7 @@ namespace Bounds.Contruccion {
 				ret = ret.Replace("[ACTUAL]", $"{pagina}");
 				ret = ret.Replace("[MAXIMO]", $"{maxPagina}");
 			}
-			paginaTexto.SetTexto(ret);
+			return ret;
 		}
 
 

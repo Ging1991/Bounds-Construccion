@@ -58,6 +58,7 @@ namespace Bounds.Contruccion {
 
 		void Start() {
 			parametros = controlBounds.InicializarEscena("GENERAL", traductorEspecial);
+			traductorEspecial.inicializado = true;
 
 			ilustradorDeCartas = new IlustradorDeCartas(
 				new DireccionRecursos(parametros.direccionesGeneradas["CARTAS_RECURSO"]),

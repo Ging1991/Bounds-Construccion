@@ -698,6 +698,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447511619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6879692264001691075, guid: d8963b8949585174482e0b70511de7f1, type: 3}
+  m_PrefabInstance: {fileID: 762564951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab57d110d60e354aaf90a970e296f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &505190316 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3288242827769109262, guid: 4846e107b9cf7f348ad4b7b7a2cb8040, type: 3}
@@ -1434,6 +1445,14 @@ PrefabInstance:
     - target: {fileID: 6879692264001691075, guid: d8963b8949585174482e0b70511de7f1, type: 3}
       propertyPath: clave
       value: PAGINA [ACTUAL]/[MAXIMO]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879692264001691075, guid: d8963b8949585174482e0b70511de7f1, type: 3}
+      propertyPath: esEspecial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879692264001691075, guid: d8963b8949585174482e0b70511de7f1, type: 3}
+      propertyPath: destruirAlTraducir
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4111,7 +4130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pagina: 0
   maxPagina: 0
-  paginaTexto: {fileID: 1903386258}
+  paginaTexto: {fileID: 447511619}
 --- !u!1 &1710321644
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,17 +4465,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 945c53116c6581949a73f4d1aa92934f, type: 3}
---- !u!114 &1903386258 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6879692264001691075, guid: d8963b8949585174482e0b70511de7f1, type: 3}
-  m_PrefabInstance: {fileID: 1281895448}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ab57d110d60e354aaf90a970e296f33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1905569343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4842,6 +4850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visorConstruccion: {fileID: 1036570170}
+  inicializado: 0
 --- !u!1 &1973335621 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6042740383191885581, guid: 6c11691c5ceb2614ca40280ebbc0f4e2, type: 3}

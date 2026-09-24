@@ -15,13 +15,13 @@
         "Ging1991.Musica",
         "Ging1991.Core",
         "Ging1991.Dialogos",
-        "Ging1991.Salesforce",
         "Ging1991.Relojes",
         "Ging1991.Ventanas",
         "Ging1991.Animaciones",
         "Ging1991.Interfaces",
         "Ging1991.Persistencia",
-        "Ging1991.Idiomas"
+        "Ging1991.Idiomas",
+        "Bounds.Conexiones"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,8 +1,6 @@
 using System;
+using Bounds.Conexiones;
 using Bounds.Construccion;
-using Bounds.Salesforce;
-using Ging1991.Persistencia.Direcciones;
-using Ging1991.Salesforce;
 using UnityEngine;
 
 namespace Bounds.Contruccion {
@@ -42,24 +40,16 @@ namespace Bounds.Contruccion {
 
 
 		private async void ActualizarDesdeLaNube() {
-			LectorCredenciales lectorCredenciales = new LectorCredenciales(new DireccionRecursos("Salesforce", "Credenciales").Generar());
-			ServicioGetRestricciones servicio = new(lectorCredenciales.Leer());
-
-			if (await servicio.AutorizarAsincronico()) {
-				ServicioGetRestricciones.Restricciones restriccionesNube = await servicio.LlamarAsincronica();
-				LectorRestricciones.Dato restriccionesLocal = lector.Leer();
-				restriccionesLocal.prohibidas = restriccionesNube.prohibidas;
-				restriccionesLocal.limitadas = restriccionesNube.limitadas;
-				restriccionesLocal.semilimitadas = restriccionesNube.semilimitadas;
-				restriccionesLocal.restringidas = restriccionesNube.restringidas;
-				restriccionesLocal.semirestringidas = restriccionesNube.semirestringidas;
-				restriccionesLocal.fecha = DateTime.Today.ToString("yyyy-MM-dd");
-				lector.Guardar(restriccionesLocal);
-
-			}
-			else {
-				Debug.LogError("No se pudieron traer los datos de restricciones.");
-			}
+			ConexionRestricciones conexionRestricciones = new ConexionRestricciones();
+			ConexionRestricciones.Salida restriccionesNube = await conexionRestricciones.EjecutarAsync();
+			LectorRestricciones.Dato restriccionesLocal = lector.Leer();
+			restriccionesLocal.prohibidas = restriccionesNube.prohibidas;
+			restriccionesLocal.limitadas = restriccionesNube.limitadas;
+			restriccionesLocal.semilimitadas = restriccionesNube.semilimitadas;
+			restriccionesLocal.restringidas = restriccionesNube.restringidas;
+			restriccionesLocal.semirestringidas = restriccionesNube.semirestringidas;
+			restriccionesLocal.fecha = DateTime.Today.ToString("yyyy-MM-dd");
+			lector.Guardar(restriccionesLocal);
 		}
 
 	}

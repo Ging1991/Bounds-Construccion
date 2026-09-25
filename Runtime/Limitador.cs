@@ -1,5 +1,5 @@
 using System;
-using Bounds.Conexiones;
+using Bounds.Conexiones.Servicios;
 using Bounds.Construccion;
 using UnityEngine;
 
@@ -40,14 +40,14 @@ namespace Bounds.Contruccion {
 
 
 		private async void ActualizarDesdeLaNube() {
-			ConexionRestricciones conexionRestricciones = new ConexionRestricciones();
-			ConexionRestricciones.Salida restriccionesNube = await conexionRestricciones.EjecutarAsync();
+			ServicioRestricciones api = new();
+			ServicioRestricciones.Salida salida = await api.EjecutarServicio();
 			LectorRestricciones.Dato restriccionesLocal = lector.Leer();
-			restriccionesLocal.prohibidas = restriccionesNube.prohibidas;
-			restriccionesLocal.limitadas = restriccionesNube.limitadas;
-			restriccionesLocal.semilimitadas = restriccionesNube.semilimitadas;
-			restriccionesLocal.restringidas = restriccionesNube.restringidas;
-			restriccionesLocal.semirestringidas = restriccionesNube.semirestringidas;
+			restriccionesLocal.prohibidas = salida.prohibidas;
+			restriccionesLocal.limitadas = salida.limitadas;
+			restriccionesLocal.semilimitadas = salida.semilimitadas;
+			restriccionesLocal.restringidas = salida.restringidas;
+			restriccionesLocal.semirestringidas = salida.semirestringidas;
 			restriccionesLocal.fecha = DateTime.Today.ToString("yyyy-MM-dd");
 			lector.Guardar(restriccionesLocal);
 		}

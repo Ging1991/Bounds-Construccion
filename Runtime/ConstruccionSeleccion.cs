@@ -82,6 +82,13 @@ namespace Bounds.Contruccion {
 		}
 
 
+		public void BotonCrearRival() {
+			Predeterminar();
+			ControlEscena escena = ControlEscena.GetInstancia();
+			escena.CambiarEscena("CONSTRUCCION CREAR RIVAL");
+		}
+
+
 		public void Eliminar() {
 			OpcionMazoConstruccion opcion = TraerSeleccionado();
 			opcion.Eliminar();

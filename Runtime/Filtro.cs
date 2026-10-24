@@ -29,6 +29,7 @@ namespace Bounds.Contruccion {
 		private List<int> cartasDivinidad;
 		private List<int> cartasOscuridad;
 		private List<int> cartasEterno;
+		private List<int> cartasFamilia;
 		private List<int> cartasColeccion = new();
 
 		public void Inicializar() {
@@ -61,8 +62,9 @@ namespace Bounds.Contruccion {
 			cartasTrueno = GenerarListaCartasID("TRUENO");
 			cartasDivinidad = GenerarListaCartasID("DIVINIDAD");
 			cartasEterno = GenerarListaCartasID("ETERNO");
-
+			cartasFamilia = GenerarListaCartasID("FAMILIA");
 			iniciado = true;
+
 		}
 
 		public List<int> GenerarListaCartasID(string codigo) {
@@ -93,6 +95,8 @@ namespace Bounds.Contruccion {
 					cartasColeccion.AddRange(cartasDivinidad);
 				if (controladorColecciones.valores["ETERNO"])
 					cartasColeccion.AddRange(cartasEterno);
+				if (controladorColecciones.valores["FAMILIA"])
+					cartasColeccion.AddRange(cartasFamilia);
 			}
 
 			foreach (LineaRecetaConstruccion carta in FindAnyObjectByType<Recetario>().GetCartas()) {
